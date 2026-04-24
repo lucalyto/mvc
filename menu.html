@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cinema</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+
+    <style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background-color: #050505;
+    color: #fff;
+    padding-top: 90px;
+}
+
+.header-container {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 9999;
+    background: rgba(10, 10, 10, 0.85);
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    transition: 0.4s;
+}
+
+.header-scrolled {
+    height: 75px;
+    background: #000;
+}
+
+.navbar {
+    max-width: 1400px;
+    margin: 0 auto;
+    height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 40px;
+}
+
+.logo-text {
+    font-size: 36px;
+    font-weight: 900;
+    color: #fff;
+    text-transform: uppercase;
+    text-decoration: none;
+    letter-spacing: -1px;
+}
+
+.logo-text span {
+    color: #e50914;
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 15px;
+    margin: 0;
+    align-items: center;
+}
+
+.nav-item {
+    position: relative;
+}
+
+.nav-link {
+    color: rgba(255,255,255,0.7);
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 35px 10px;
+    text-transform: uppercase;
+    transition: 0.3s;
+    letter-spacing: 1px;
+    position: relative;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 25px;
+    left: 10px;
+    width: 0;
+    height: 2px;
+    background: #e50914;
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::after, 
+.nav-link.active::after {
+    width: calc(100% - 20px);
+}
+
+.nav-link:hover {
+    color: #fff;
+}
+
+.dropdown-content {
+    position: absolute;
+    top: 85%;
+    left: 0;
+    background: rgba(20, 20, 20, 0.98);
+    backdrop-filter: blur(20px);
+    min-width: 220px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    border-radius: 8px;
+    padding: 12px 0;
+    border: 1px solid rgba(255,255,255,0.1);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+}
+
+.nav-item:hover .dropdown-content {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.dropdown-item {
+    color: rgba(255,255,255,0.6);
+    padding: 12px 20px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 13px;
+    font-weight: 500;
+    transition: 0.2s;
+}
+
+.dropdown-item i {
+    font-size: 10px;
+    opacity: 0;
+    transition: 0.3s;
+    transform: translateX(-10px);
+}
+
+.dropdown-item:hover {
+    background: rgba(255,255,255,0.05);
+    color: #e50914;
+    padding-left: 25px;
+}
+
+.dropdown-item:hover i {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.nav-link i {
+    font-size: 9px;
+    margin-left: 5px;
+    transition: 0.3s;
+}
+
+.nav-item:hover .nav-link i {
+    transform: scale(0.8) rotate(180deg);
+    color: #e50914;
+}
+
+.btn-ticket-main {
+    background: #e50914;
+    color: #fff;
+    padding: 10px 25px;
+    border-radius: 50px;
+    font-weight: 700;
+    text-decoration: none;
+    font-size: 11px;
+    letter-spacing: 1px;
+    border: none;
+    transition: 0.3s;
+}
+
+.btn-ticket-main:hover {
+    background: #b20710;
+    transform: scale(1.05);
+}
+
+.carousel-section {
+    padding: 20px 0;
+    background-color: #050505;
+}
+
+#heroCarousel {
+    max-width: 1200px;
+    margin: 0 auto;
+    border-radius: 20px;
+    overflow: hidden;
+    aspect-ratio: 21 / 9;
+    min-height: 400px;
+    background-color: #111;
+}
+
+.carousel-inner, 
+.carousel-item {
+    height: 100%;
+}
+
+.carousel-item {
+    background-size: cover;
+    background-position: center;
+}
+
+.carousel-item::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+}
+
+.carousel-caption {
+    text-align: left;
+    left: 5%;
+    top: 50%;
+    transform: translateY(-50%);
+    bottom: auto;
+    padding: 0;
+}
+
+.carousel-caption h1 {
+    font-size: 3.5rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    line-height: 1;
+}
+
+.btn-comprar-banner {
+    background-color: #fff;
+    color: #000;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 50px;
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 14px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.carousel-control-prev, 
+.carousel-control-next {
+    width: 40px;
+    height: 40px;
+    background: rgba(0,0,0,0.5);
+    border-radius: 50%;
+    top: auto;
+    bottom: 20px;
+    opacity: 1;
+}
+
+.carousel-control-prev {
+    left: auto;
+    right: 70px;
+}
+
+.carousel-control-next {
+    left: auto;
+    right: 20px;
+}
+
+.section-padding {
+    padding: 80px 40px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.movie-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 40px;
+}
+
+.movie-card-v2 { 
+    position: relative;
+    background: #111;
+    border-radius: 20px;
+    padding: 15px;
+    border: 1px solid rgba(255,255,255,0.05);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.movie-card-v2:hover {
+    transform: translateY(-10px);
+    border-color: rgba(229, 9, 20, 0.4);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.5);
+}
+
+.poster-container {
+    position: relative;
+    border-radius: 15px;
+    overflow: hidden;
+    aspect-ratio: 2 / 3; 
+}
+
+.poster-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.age-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px; 
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    font-weight: 800;
+    font-size: 14px;
+    color: #fff;
+    z-index: 2;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.card-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(to top, rgba(0,0,0,0.9) 10%, transparent 60%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    padding-bottom: 30px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.movie-card-v2:hover .card-overlay { opacity: 1; }
+.movie-card-v2:hover img { transform: scale(1.1); }
+
+.btn-buy-ticket {
+    background-color: #e50914;
+    color: white;
+    text-decoration: none;
+    padding: 10px 25px;
+    border-radius: 50px;
+    font-weight: 800;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.movie-info-box {
+    padding: 15px 5px 5px;
+}
+
+.movie-title { 
+    font-size: 18px; 
+    font-weight: 800; 
+    margin-bottom: 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; 
+}
+
+.movie-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.movie-genre { 
+    font-size: 11px; 
+    color: #e50914; 
+    text-transform: uppercase; 
+    font-weight: 700;
+}
+
+.movie-rating {
+    font-size: 12px;
+    color: #ffb800;
+    font-weight: 600;
+}
+.fw-900 { font-weight: 900; }
+
+.btn-small {
+    padding: 8px 18px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 11px;
+    font-weight: 700;
+    border: 1.5px solid #e50914;
+    color: #e50914;
+    transition: 0.3s;
+}
+
+.btn-small.primary {
+    background: #e50914;
+    color: #fff;
+}
+
+.promo-section-container {
+        padding: 80px 5%;
+    }
+
+.promo-typo-card {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+    padding: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 320px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.promo-typo-card::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(229, 9, 20, 0.05) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.promo-main-info { position: relative; z-index: 2; max-width: 60%; }
+
+.promo-tag-outline {
+    display: inline-block;
+    padding: 5px 15px;
+    border: 1px solid #e50914;
+    color: #e50914;
+    border-radius: 50px;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+.display-text {
+    font-size: 42px;
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 15px;
+}
+
+.display-text .highlight {
+    color: #e50914;
+    text-shadow: 0 0 20px rgba(229, 9, 20, 0.4);
+}
+
+.description-text {
+    color: #aaa;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.promo-side-visual {
+    text-align: center;
+    position: relative;
+    z-index: 2;
+}
+
+.big-number {
+    font-size: 100px;
+    font-weight: 900;
+    line-height: 1;
+    background: linear-gradient(to bottom, #fff, #444);
+    -webkit-background-clip: text; 
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: block;
+}
+
+.off-text {
+    font-size: 24px;
+    font-weight: 800;
+    letter-spacing: 10px;
+    color: #e50914;
+    margin-top: -10px;
+    display: block;
+}
+
+.icon-plus {
+    font-size: 80px;
+    color: #fff;
+    filter: drop-shadow(0 0 15px #e50914);
+}
+
+.btn-login-small {
+    background: #e50914;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 25px; 
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-block;
+    width: auto; 
+}
+
+.btn-login-small:hover {
+    background: #b20710;
+    transform: scale(1.05);
+}
+
+.custom-input {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #fff;
+    padding: 10px 15px ;
+    border-radius: 6px ;
+    font-size: 14px 
+}
+
+</style>
+
+</head>
+<body>
+
+    <header class="header-container" id="mainHeader">
+        <nav class="navbar">
+            <a href="menu.html" class="logo-text">
+                <i class="fas fa-film text-danger me-2"></i>CINE<span>PRO</span>
+            </a>
+
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="menu.html" class="nav-link active">Home</a></li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">Filmes <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-content">
+                        <a href="em-breve.html" class="dropdown-item">Em Breve <i class="fas fa-chevron-right"></i></a>
+                        <div style="border-top: 1px solid rgba(255,255,255,0.05); margin: 8px 0;"></div>
+                        <a href="sessoes-vip.html" class="dropdown-item">Sessões VIP <i class="fas fa-star text-warning"></i></a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="nossos-cinemas.html" class="nav-link">Cinemas <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-content">
+                        <a href="nossos-cinemas.html" class="dropdown-item">São Paulo</a>
+                        <a href="nossos-cinemas.html" class="dropdown-item">Rio de Janeiro</a>
+                    </div>
+                </li>
+                <li class="nav-item"><a href="precos.html" class="nav-link">Preços</a></li>
+            </ul>
+
+            <div class="nav-right">
+                <a href="perfil.html" style="text-decoration: none;">
+                    <button class="btn-ticket-main">PERFIL</button>
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <section class="carousel-section">
+        <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
+            
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active"></button>
+                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1"></button>
+            </div>
+            <div class="carousel-inner">
+                    <div class="carousel-item active" style="background-image: url('mario.jpg');">
+                        <div class="carousel-caption">
+                            <h1>MARIO<br>GALAXY</h1>
+                            <a href="javascript:void(0)" onclick="verificarAcesso('Mario Galaxy')" class="btn-buy-ticket">Ingressos</a>
+                        </div>
+                    </div>
+
+                    <div class="carousel-item" style="background-image: url('banner-filme.jpg');">
+                        <div class="carousel-caption">
+                            <h1>ELES VÃO<br>TE MATAR</h1>
+                            <a href="javascript:void(0)" onclick="verificarAcesso('Eles Vao Te Matar')" class="btn-buy-ticket">Ingressos</a>
+                        </div>
+                    </div>
+            </div>
+
+            <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true" style="width: 20px;"></span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true" style="width: 20px;"></span>
+            </button>
+        </div>
+    </section>
+
+<section class="section-padding">
+    <div class="d-flex justify-content-between align-items-end mb-5">
+        <h2 class="fw-bold text-uppercase m-0" style="border-left: 4px solid #e50914; padding-left: 15px;">Filmes Em Cartaz</h2>
+        <p class="text-muted small m-0 text-uppercase">Sessões hoje</p>
+    </div> 
+    
+    <div class="movie-grid">
+        <div class="movie-card-v2">
+            <div class="poster-container">
+                <span class="age-badge" style="background-color: #ebeb2c;">14</span>
+                <img src="velhos.jpg" alt="Velhos Bandidos">
+                <div class="card-overlay">
+                    <a href="javascript:void(0)" onclick="verificarAcesso('Velhos Bandidos')" class="btn-buy-ticket">Ingressos</a>
+                </div>
+            </div>
+            <div class="movie-info-box">
+                <h3 class="movie-title">Velhos Bandidos</h3>
+                <div class="movie-meta">
+                    <span class="movie-genre">Ação / Aventura</span>
+                    <span class="movie-rating"><i class="fas fa-star me-1"></i>8.4</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="movie-card-v2">
+            <div class="poster-container">
+                <span class="age-badge" style="background-color: #e50914;">16</span>
+                <img src="reminders.jpg" alt="Uma Segunda Chance">
+                <div class="card-overlay">
+                    <a href="javascript:void(0)" onclick="verificarAcesso('Uma Segunda Chance')" class="btn-buy-ticket">Ingressos</a>
+                </div>
+            </div>
+            <div class="movie-info-box">
+                <h3 class="movie-title">Uma Segunda Chance</h3>
+                <div class="movie-meta">
+                    <span class="movie-genre">Romance / Amor</span>
+                    <span class="movie-rating"><i class="fas fa-star me-1"></i>9.1</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="movie-card-v2">
+            <div class="poster-container">
+                <span class="age-badge" style="background-color: #e50914;">16</span>
+                <img src="nuremberg.jpg" alt="Nuremberg">
+                <div class="card-overlay">
+                    <a href="javascript:void(0)" onclick="verificarAcesso('Nuremberg')" class="btn-buy-ticket">Ingressos</a>
+                </div>
+            </div>
+            <div class="movie-info-box">
+                <h3 class="movie-title">Nuremberg</h3>
+                <div class="movie-meta">
+                    <span class="movie-genre">Suspense / Terror</span>
+                    <span class="movie-rating"><i class="fas fa-star me-1"></i>7.8</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="movie-card-v2">
+            <div class="poster-container">
+                <span class="age-badge" style="background-color: #e50914;">16</span>
+                <img src="mumia.jpg" alt="Maldição da Múmia">
+                <div class="card-overlay">
+                    <a href="javascript:void(0)" onclick="verificarAcesso('Maldição da Múmia')" class="btn-buy-ticket">Ingressos</a>
+                </div>
+            </div>
+            <div class="movie-info-box">
+                <h3 class="movie-title">Maldição da Múmia</h3>
+                <div class="movie-meta">
+                    <span class="movie-genre">Terror / Aventura</span>
+                    <span class="movie-rating"><i class="fas fa-star me-1"></i>6.5</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+<section class="promo-section-container">
+    <div id="promoCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            
+            <div class="carousel-item active">
+                <div class="promo-typo-card">
+                    <div class="promo-main-info">
+                        <div class="promo-tag-outline">Segunda Irresistível</div>
+                        <h3 class="display-text">TODO MUNDO PAGA <span class="highlight">MEIA</span></h3>
+                        <p class="description-text">Não importa a idade ou documento: às segundas, o cinema é democrático. Válido para 2D, 3D, VIP e IMAX.</p>
+                    </div>
+                    <div class="promo-side-visual">
+                        <span class="big-number">50%</span>
+                        <span class="off-text">OFF</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="carousel-item">
+                <div class="promo-typo-card">
+                    <div class="promo-main-info">
+                        <div class="promo-tag-outline">Upgrade Gourmet</div>
+                        <h3 class="display-text">DOBRO DE <span class="highlight">PIPOCA</span></h3>
+                        <p class="description-text">Compre a pipoca média e nós fazemos o upgrade automático para a Gigante por nossa conta.</p>
+                    </div>
+                    <div class="promo-side-visual">
+                        <i class="fas fa-popcorn icon-plus"></i> <span class="off-text">SIZE UP</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="carousel-indicators custom-bars">
+            <button type="button" data-bs-target="#promoCarousel" data-bs-slide-to="0" class="active"></button>
+            <button type="button" data-bs-target="#promoCarousel" data-bs-slide-to="1"></button>
+        </div>
+    </div>
+</section>
+
+<section id="contato" class="contact-section" style="padding: 60px 0;">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6 text-center mb-4">
+                <h2 class="fw-bold text-uppercase" style="border-left: 4px solid #e50914; display: inline-block; padding-left: 15px; font-size: 1.5rem;">Fale Conosco</h2>
+                <p class="text-muted small mt-2">Dúvidas ou sugestões? Escreva abaixo.</p>
+            </div>
+        </div>
+        
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <form action="https://formspree.io/f/SEU_ID" method="POST" class="text-center">
+                    <div class="mb-3">
+                        <textarea name="mensagem" class="form-control custom-input" rows="3" placeholder="Sua mensagem ou dúvida..." required></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <input type="email" name="email" class="form-control custom-input" placeholder="Seu e-mail para resposta" required>
+                    </div>
+                    
+                    <button type="submit" class="btn-login-small">Enviar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+
+function verificarAcesso(nomeFilme) {
+    const statusLogin = localStorage.getItem('usuarioLogado');
+    
+    if (statusLogin === 'true') {
+        window.location.href = `sessao.html?filme=${encodeURIComponent(nomeFilme)}`;
+    } else {
+        console.log("Acesso negado: Usuário não logado.");
+        localStorage.setItem('urlPretendida', `sessao.html?filme=${encodeURIComponent(nomeFilme)}`);
+        window.location.href = "login.html";
+    }
+}
+</script>
+</body>
+</html>
+
+</body>
+</html>

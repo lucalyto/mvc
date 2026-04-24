@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promoções Imperdíveis - CinePro Ultra</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background-color: #050505;
+    color: #ffffff;
+    line-height: 1.6;
+}
+
+.promo-header {
+    padding: 100px 5% 60px;
+    text-align: center;
+}
+
+.promo-header h1 {
+    font-size: clamp(32px, 5vw, 52px);
+    text-transform: uppercase;
+    font-weight: 900;
+}
+
+.promo-header h1 span { 
+    color: #e50914; 
+}
+
+.promo-header p {
+    color: #aaa;
+    letter-spacing: 2px;
+    margin-top: 10px;
+    font-weight: 300;
+}
+
+.promo-grid {
+    max-width: 1200px;
+    margin: 0 auto 100px;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+}
+
+.promo-card {
+    background: #111;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid #222;
+    position: relative;
+    transition: 0.3s;
+}
+
+.promo-card:hover {
+    transform: translateY(-5px);
+    border-color: #e50914;
+}
+
+.promo-card::before, .promo-card::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 20px;
+    height: 20px;
+    background: #050505;
+    border-radius: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+}
+.promo-card::before { 
+    left: -10px; 
+}
+.promo-card::after { 
+    right: -10px; 
+}
+
+.promo-img {
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.promo-img::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 50%;
+    background: linear-gradient(to top, #111, transparent);
+}
+
+.promo-body {
+    padding: 30px;
+    text-align: center;
+}
+
+.promo-tag {
+    background: #e50914;
+    color: white;
+    padding: 5px 15px;
+    border-radius: 50px;
+    font-size: 12px;
+    font-weight: 800;
+    text-transform: uppercase;
+    display: inline-block;
+    margin-bottom: 15px;
+}
+
+.promo-body h3 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.promo-body p {
+    color: #888;
+    font-size: 14px;
+    margin-bottom: 25px;
+}
+
+.rules-section {
+    max-width: 800px;
+    margin: 0 auto 100px;
+    padding: 0 20px;
+}
+
+.rule-item {
+    background: #0a0a0a;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.rule-header {
+    padding: 20px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #1a1a1a;
+}
+
+.rule-header:hover { 
+    background: #111; 
+}
+
+.rule-content {
+    padding: 0 20px;
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    color: #666;
+    font-size: 14px;
+}
+
+.rule-item.active .rule-content {
+    padding: 20px;
+    max-height: 200px;
+    border-top: 1px solid #1a1a1a;
+}
+
+    </style>
+</head>
+<body>
+
+    <header class="promo-header">
+        <h1>Ofertas <span>Exclusivas</span></h1>
+        <p>Aproveite os melhores combos e descontos da semana</p>
+    </header>
+
+    <main class="promo-grid">
+        
+            <article class="promo-card">
+                <div class="promo-body">
+                    <span class="promo-tag">Segunda Irresistível</span>
+                    <h3>Todo mundo paga Meia</h3>
+                    <p>Nas segundas-feiras, todas as sessões 2D e 3D saem pelo preço de meia-entrada para todos os clientes.</p>
+                </div>
+            </article>
+
+            <article class="promo-card">
+                <div class="promo-body">
+                    <span class="promo-tag">Combo Casal</span>
+                    <h3>Pipoca G + 2 Bebidas</h3>
+                    <p>Compre seu ingresso VIP e ganhe 20% de desconto no combo oficial de pipoca grande e refrigerante.</p>
+                </div>
+            </article>
+
+            <article class="promo-card">
+                <div class="promo-body">
+                    <span class="promo-tag">Aniversariante</span>
+                    <h3>Por nossa conta</h3>
+                    <p>Venha com 3 amigos no dia do seu aniversário e o seu ingresso sai totalmente de graça! Aproveite essa oportunidade.</p>
+                </div>
+            </article>
+
+    </main>
+
+    <script>
+        document.querySelectorAll('.rule-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const item = header.parentElement;
+                item.classList.toggle('active');
+            });
+        });
+    </script>
+
+</body>
+</html>

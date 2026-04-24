@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CinePro - Selecionar Sessão</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+
+    <style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background-color: #050505;
+    color: #fff;
+    padding-top: 100px;
+}
+
+.container-sessao {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+}
+
+.filme-info {
+    margin-bottom: 40px;
+}
+
+.filme-titulo {
+    font-size: 3rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+.sala-badge {
+    background: #e50914;
+    color: #fff;
+    padding: 5px 15px;
+    border-radius: 4px;
+    font-weight: 700;
+    font-size: 14px;
+text-transform: uppercase;
+}
+.seletor-horarios {
+    background: #111;
+    padding: 40px;
+    border-radius: 15px;
+    border: 1px solid rgba(255,255,255,0.05);
+    margin-top: 30px;
+}
+
+.instrucao { 
+    color: rgba(255,255,255,0.6); 
+    margin-bottom: 25px; 
+    font-weight: 600; 
+    text-transform: uppercase; 
+    letter-spacing: 1px; 
+}
+
+.grid-horarios {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+}
+
+.btn-horario {
+    background: transparent;
+    border: 2px solid #e50914;
+    color: #fff;
+    padding: 15px 30px;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 18px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.btn-horario:hover {
+    background: #e50914;
+    color: #fff;
+    transform: scale(1.05);
+}
+
+.btn-voltar {
+    margin-top: 40px;
+    display: inline-block;
+    color: rgba(255,255,255,0.4);
+    text-decoration: none;
+    font-size: 14px;
+    transition: 0.3s;
+}
+.btn-voltar:hover { 
+    color: #fff; 
+}
+    </style>
+</head>
+<body>
+
+    <div class="container-sessao">
+        <div class="filme-info">
+            <span class="sala-badge" id="exibicaoSala">Carregando...</span>
+            <h1 class="filme-titulo" id="exibicaoTitulo">Filme</h1>
+        </div>
+
+        <div class="seletor-horarios">
+            <p class="instrucao">Escolha o horário da sessão</p>
+            <div class="grid-horarios" id="containerHorarios">
+                </div>
+        </div>
+
+        <a href="menu.html" class="btn-voltar"><i class="fas fa-arrow-left me-2"></i> Voltar para a vitrine</a>
+    </div>
+
+    <script>
+
+        const programacao = {
+            "Mario Galaxy": { sala: "SALA 01 IMAX", horarios: ["14:30", "17:00", "20:00", "22:30"] },
+            "Eles Vao Te Matar": { sala: "SALA 02 VIP", horarios: ["15:00", "18:30", "21:45"] },
+            "Velhos Bandidos": { sala: "SALA 03", horarios: ["13:00", "16:00", "19:00"] },
+            "Uma Segunda Chance": { sala: "SALA 04 KIDS", horarios: ["11:00", "14:00", "16:30"] },
+            "Nuremberg": { sala: "SALA 05", horarios: ["20:00", "22:15", "00:00"] },
+            "Maldição da Múmia": { sala: "SALA 06", horarios: ["14:00", "17:30", "21:00"] }
+        };
+
+    window.onload = function() {
+        var endereco = window.location.href;
+
+        var parametros = new URLSearchParams(window.location.search);
+        var filmeNome = parametros.get('filme');
+
+        var titulo = document.getElementById('exibicaoTitulo');
+        var sala = document.getElementById('exibicaoSala');
+        var divBotoes = document.getElementById('containerHorarios');
+
+        var dadosDoFilme = programacao[filmeNome];
+
+        if (dadosDoFilme) {
+            titulo.innerText = filmeNome;
+            sala.innerText = dadosDoFilme.sala;
+
+            divBotoes.innerHTML = "";
+
+            for (var i = 0; i < dadosDoFilme.horarios.length; i++) {
+                var hora = dadosDoFilme.horarios[i];
+
+                var link = "assentos.html?filme=" + filmeNome + "&hora=" + hora + "&sala=" + dadosDoFilme.sala;
+
+                divBotoes.innerHTML = divBotoes.innerHTML + '<a href="' + link + '" class="btn-horario">' + hora + '</a>';
+            }
+        } else {
+            titulo.innerText = "Filme não encontrado";
+            sala.style.display = "none";
+        }
+    }
+    </script>
+</body>
+</html>

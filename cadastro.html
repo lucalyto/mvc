@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro - CinePro Ultra</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+* { 
+    box-sizing: border-box; 
+    margin: 0; padding: 0; 
+    font-family: 'Plus Jakarta Sans', sans-serif; 
+}
+
+body {
+    background: #000000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.caixa {
+    background: rgba(15, 15, 15, 0.8);
+    backdrop-filter: blur(20px);
+    padding: 60px 45px; 
+    border-radius: 12px; 
+    box-shadow: 0 40px 80px rgba(0,0,0,0.8);
+    width: 450px; 
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+h1 { 
+    color: #fff; 
+    margin-bottom: 10px; 
+    font-size: 32px; 
+    font-weight: 800;
+    letter-spacing: -1px;
+}
+
+header p { 
+    color: rgba(255, 255, 255, 0.5); 
+    margin-bottom: 40px; 
+    font-size: 15px;
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+input {
+    width: 100%;
+    padding: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    outline: none;
+    background: rgba(255, 255, 255, 0.05);
+    transition: 0.3s;
+    font-size: 15px;
+    color: #fff;
+}
+
+input:focus {
+    border-color: #e50914; 
+    background: rgba(255, 255, 255, 0.08);
+}
+
+input::placeholder {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+.btn-cadastrar {
+    width: 100%;
+    padding: 16px;
+    background: #e50914;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-bottom: 10px;
+}
+
+.btn-cadastrar:hover {
+    background: #b20710;
+    transform: translateY(-2px);
+}
+
+.area-voltar-login {
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.link-registro {
+    color: #e50914; 
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 14px;
+    transition: 0.2s;
+}
+
+.link-registro:hover {
+    color: #fff;
+    text-decoration: underline;
+}
+
+    </style>
+</head>
+<body>
+    <main class="caixa">
+        <header>
+            <h1>CADASTRE-SE</h1>
+            <p>Crie sua conta no CinePro Ultra</p>
+        </header>
+
+        <form action="/cadastrar" method="POST">
+            <div class="input-group">
+                <input type="text" name="usuario" placeholder="Utilizador" required>
+            </div>
+            <div class="input-group">
+                <input type="password" name="senha" placeholder="Senha" required>
+            </div>
+            <button type="submit" class="btn-cadastrar">CRIAR CONTA</button>
+        </form>
+
+<script>
+document.getElementById('cadastroForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    localStorage.setItem('usuarioLogado', 'true')
+
+    const urlPretendida = localStorage.getItem('urlPretendida')
+    
+    if (urlPretendida) {
+        localStorage.removeItem('urlPretendida')
+        window.location.href = urlPretendida
+    } else {
+        window.location.href = "menu.html"
+    }
+})
+</script>

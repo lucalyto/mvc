@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Em Breve - CinePro Ultra</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background-color: #050505; 
+    color: #ffffff;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+.page-header {
+    padding: 100px 5% 60px;
+    background:#050505;
+    text-align: center;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.page-header h1 {
+    font-size: 48px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: -1px;
+}
+
+.page-header h1 span {
+    color: #e50914; 
+}
+
+.page-header p {
+    color: #888;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-top: 10px;
+}
+
+.timeline-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 60px 20px;
+    position: relative;
+}
+
+
+.timeline-container::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    width: 2px;
+    height: 90%;
+    background: rgba(229, 9, 20, 0.2);
+    transform: translateX(-50%);
+}
+
+.movie-entry {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 100px;
+    width: 100%;
+    position: relative;
+}
+
+.movie-visual {
+    width: 45%;
+    position: relative;
+}
+
+.poster-wrapper {
+    width: 100%;
+    border-radius: 15px;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.1);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+    transition: transform 0.4s ease, border-color 0.4s ease;
+}
+
+.poster-wrapper img {
+    width: 100%;
+    display: block;
+    transition: filter 0.4s ease;
+}
+
+.movie-entry:hover .poster-wrapper {
+    transform: scale(1.02);
+    border-color: #e50914;
+}
+
+.movie-details {
+    width: 45%;
+    padding: 20px;
+}
+
+.date-badge {
+    display: inline-block;
+    background: rgba(229, 9, 20, 0.1);
+    color: #e50914;
+    padding: 5px 15px;
+    border-radius: 50px;
+    font-weight: 800;
+    font-size: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #e50914;
+}
+
+.movie-details h2 {
+    font-size: 36px;
+    margin-bottom: 15px;
+    line-height: 1.1;
+}
+
+.movie-details p {
+    color: #aaa;
+    font-size: 16px;
+    margin-bottom: 25px;
+}
+
+.btn-action {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: #e50914;
+    color: #fff;
+    padding: 12px 25px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 14px;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-action:hover {
+    background: #ff0f1a;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(229, 9, 20, 0.4);
+}
+
+.btn-outline {
+    background: transparent;
+    border: 1px solid #333;
+    color: #fff;
+    margin-left: 10px;
+}
+
+.btn-outline:hover {
+    border-color: #e50914;
+    color: #e50914;
+}
+
+.movie-entry:nth-child(even) {
+    flex-direction: row-reverse;
+}
+
+.timeline-dot {
+    position: absolute;
+    left: 50%;
+    width: 16px;
+    height: 16px;
+    background: #050505;
+    border: 4px solid #e50914;
+    border-radius: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+}
+
+    </style>
+</head>
+<body>
+
+    <header class="page-header">
+        <p>Próximos Lançamentos</p>
+        <h1>Em <span>Breve</span></h1>
+    </header>
+
+    <main class="timeline-container">
+
+        <article class="movie-entry">
+            <div class="timeline-dot"></div>
+            <div class="movie-visual">
+                <div class="poster-wrapper">
+                    <img src="vingadores.jpg" alt="Filme 1">
+                </div>
+            </div>
+            <div class="movie-details">
+                <div class="date-badge">Estreia: 12 de Outubro</div>
+                <h2>Vingadores</h2>
+                <p>Após o colapso definitivo do multiverso, as realidades sobreviventes são fundidas em um único mundo fragmentado, onde os maiores heróis da história precisam enfrentar uma divindade onipotente para evitar a extinção total da existência.</p>
+                <div class="actions">
+                </div>
+            </div>
+        </article>
+
+        <article class="movie-entry">
+            <div class="timeline-dot"></div>
+            <div class="movie-visual">
+                <div class="poster-wrapper">
+                    <img src="frozen.jpg" alt="Filme 2">
+                </div>
+            </div>
+            <div class="movie-details">
+                <div class="date-badge">Estreia: 05 de Novembro</div>
+                <h2>Frozen 3</h2>
+                <p>Um antigo chamado vindo das terras desconhecidas ao norte de Arendelle força as irmãs a confrontarem a origem sombria de seus ancestrais, revelando que o equilíbrio entre os elementos é muito mais frágil do que elas imaginavam.</p>
+                <div class="actions">
+                </div>
+            </div>
+        </article>
+
+        <article class="movie-entry">
+            <div class="timeline-dot"></div>
+            <div class="movie-visual">
+                <div class="poster-wrapper">
+                    <img src="sonic.jpg" alt="Filme 3">
+                </div>
+            </div>
+            <div class="movie-details">
+                <div class="date-badge">Estreia: 22 de Dezembro</div>
+                <h2>Sonic 4</h2>
+                <p>Com a ameaça de Shadow neutralizada, o surgimento de uma anomalia dimensional traz um novo adversário que não busca apenas velocidade, mas o controle absoluto sobre as Esmeraldas do Caos, testando os limites da união entre Sonic, Tails e Knuckles.</p>
+                <div class="actions">
+                </div>
+            </div>
+        </article>
+
+    </main>
+
+</body>
+</html>

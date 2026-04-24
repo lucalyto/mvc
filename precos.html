@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabela de Preços - CinePro Ultra</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background-color: #050505;
+    color: #ffffff;
+    line-height: 1.6;
+}
+
+.price-header {
+    padding: 100px 5% 40px;
+    text-align: center;
+    background: linear-gradient(to bottom, #111, #050505);
+}
+
+.price-header h1 {
+    font-size: 42px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.price-header h1 span {
+     color: #e50914;
+}
+
+.price-header p {
+    color: #888;
+    margin-top: 10px;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.pricing-container {
+    max-width: 1100px;
+    margin: 0 auto 80px;
+    padding: 0 20px;
+}
+
+.pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 50px;
+}
+
+.price-card {
+    background: #0f0f0f;
+    border-radius: 20px;
+    border: 1px solid #1a1a1a;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.price-card:hover {
+    border-color: #e50914;
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(229, 9, 20, 0.2);
+}
+
+.card-title {
+    background: #151515;
+    padding: 25px;
+    text-align: center;
+    border-bottom: 1px solid #222;
+}
+
+.card-title h3 {
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #e50914;
+}
+
+.price-row {
+    padding: 20px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #111;
+}
+
+.price-row:last-child { 
+    border-bottom: none; 
+}
+
+.day-info { 
+    font-weight: 600; 
+    font-size: 15px; 
+}
+.day-info span { 
+    display: block; 
+    font-size: 12px; 
+    color: #666; 
+    font-weight: 400; 
+}
+
+.price-values { 
+    text-align: right; 
+}
+.val-inteira { 
+    font-size: 18px; 
+    font-weight: 800; 
+    color: #fff; 
+}
+.val-meia { 
+    font-size: 13px; 
+    color: #888; 
+}
+
+.promo-section {
+    background: rgba(229, 9, 20, 0.05);
+    padding: 60px 20px;
+    border-radius: 15px;
+    margin-bottom: 80px;
+    border: 1px dashed #e50914;
+}
+
+.promo-content {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+.promo-text h2 { 
+    font-size: 28px; 
+    margin-bottom: 15px; 
+}
+.promo-text p { 
+    color: #ccc; 
+    font-size: 14px; 
+}
+
+.promo-icon {
+    font-size: 60px;
+    color: #e50914;
+}
+
+.disclaimer {
+    text-align: center;
+    color: #444;
+    font-size: 12px;
+    padding-bottom: 40px;
+}
+
+    </style>
+</head>
+<body>
+
+    <header class="price-header">
+        <p>Valores das Sessões</p>
+        <h1>Nossa Tabela de <span>Preços</span></h1>
+    </header>
+
+    <main class="pricing-container">
+        
+        <div class="pricing-grid">
+            <div class="price-card">
+                <div class="card-title">
+                    <h3>Salas 2D / 3D</h3>
+                </div>
+                <div class="price-row">
+                    <div class="day-info">Segunda a Quarta<span>(Exceto feriados)</span></div>
+                    <div class="price-values">
+                        <div class="val-inteira">R$ 32,00</div>
+                        <div class="val-meia">Meia: R$ 16,00</div>
+                    </div>
+                </div>
+                <div class="price-row">
+                    <div class="day-info">Quinta a Domingo<span>(+ Feriados)</span></div>
+                    <div class="price-values">
+                        <div class="val-inteira">R$ 38,00</div>
+                        <div class="val-meia">Meia: R$ 19,00</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="price-card">
+                <div class="card-title" style="background: linear-gradient(to right, #151515, #1a0202);">
+                    <h3>IMAX & 4DX</h3>
+                </div>
+                <div class="price-row">
+                    <div class="day-info">Segunda a Quarta<span>(Exceto feriados)</span></div>
+                    <div class="price-values">
+                        <div class="val-inteira">R$ 48,00</div>
+                        <div class="val-meia">Meia: R$ 24,00</div>
+                    </div>
+                </div>
+                <div class="price-row">
+                    <div class="day-info">Quinta a Domingo<span>(+ Feriados)</span></div>
+                    <div class="price-values">
+                        <div class="val-inteira">R$ 56,00</div>
+                        <div class="val-meia">Meia: R$ 28,00</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="price-card" style="border-color: #d4af37;">
+                <div class="card-title">
+                    <h3 style="color: #d4af37;">VIP EXPERIENCE</h3>
+                </div>
+                <div class="price-row">
+                    <div class="day-info">Segunda a Quarta<span>(Exceto feriados)</span></div>
+                    <div class="price-values">
+                        <div class="val-inteira">R$ 72,00</div>
+                        <div class="val-meia">Meia: R$ 36,00</div>
+                    </div>
+                </div>
+                <div class="price-row">
+                    <div class="day-info">Quinta a Domingo<span>(+ Feriados)</span></div>
+                    <div class="price-values">
+                        <div class="val-inteira">R$ 84,00</div>
+                        <div class="val-meia">Meia: R$ 42,00</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div style="margin-top: 50px;">
+            <div class="promo-section">
+                <div class="promo-content">
+                    <div class="promo-icon">
+                        <i class="fas fa-id-card"></i>
+                    </div>
+                    <div class="promo-text">
+                        <h2>Quem paga Meia-Entrada?</h2>
+                        <p>Estudantes (com carteira ID Estudantil), Idosos (60+), Professores da rede pública e Pessoas com Deficiência (PCD) têm direito a 50% de desconto em qualquer sessão. É obrigatória a apresentação de documento comprobatório na entrada da sala.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+</body>
+</html>

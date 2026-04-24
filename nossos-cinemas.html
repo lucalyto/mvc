@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nossas Unidades - CinePro Ultra</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background-color: #050505;
+    color: #ffffff;
+    line-height: 1.6;
+}
+
+.cinema-header {
+    padding: 80px 5% 40px;
+    text-align: center;
+    background: linear-gradient(to bottom, #111, #050505);
+}
+
+.cinema-header h1 {
+    font-size: 42px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.cinema-header h1 span { color: #e50914; }
+
+.search-city {
+    max-width: 600px;
+    margin: 20px auto 50px;
+    position: relative;
+}
+
+.search-city input {
+    width: 100%;
+    padding: 15px 25px;
+    background: #1a1a1a;
+    border: 1px solid #333;
+    border-radius: 50px;
+    color: white;
+    outline: none;
+    transition: 0.3s;
+}
+
+.search-city input:focus { border-color: #e50914; box-shadow: 0 0 15px rgba(229, 9, 20, 0.2); }
+
+.units-container {
+    max-width: 1200px;
+    margin: 0 auto 100px;
+    padding: 0 20px;
+    display: grid;
+    gap: 30px;
+}
+
+.city-section {
+    margin-top: 40px;
+    border-bottom: 1px solid #1a1a1a;
+    padding-bottom: 20px;
+}
+
+.city-section h2 {
+    font-size: 24px;
+    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.city-section h2 i { color: #e50914; }
+
+.unit-card {
+    background: #0f0f0f;
+    border-radius: 15px;
+    display: flex;
+    overflow: hidden;
+    border: 1px solid #1a1a1a;
+    transition: 0.3s;
+    margin-bottom: 20px;
+}
+
+.unit-card:hover {
+    border-color: #e50914;
+    transform: scale(1.01);
+}
+
+.unit-img {
+    width: 300px;
+    background-size: cover;
+    background-position: center;
+}
+
+.unit-info {
+    padding: 30px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.unit-info h3 { font-size: 22px; margin-bottom: 10px; }
+.unit-info p { color: #888; font-size: 14px; margin-bottom: 15px; }
+
+.tech-tags {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.tech-tag {
+    font-size: 10px;
+    font-weight: 800;
+    padding: 4px 10px;
+    border-radius: 4px;
+    background: #222;
+    color: #ccc;
+}
+
+.tech-tag.active { color: #e50914; border: 1px solid #e50914; background: rgba(229, 9, 20, 0.05); }
+
+.btn-primary { background: #e50914; color: white; }
+.btn-primary:hover { background: #ff0f1a; box-shadow: 0 5px 15px rgba(229, 9, 20, 0.4); }
+
+.btn-outline { border: 1px solid #333; color: white; }
+.btn-outline:hover { border-color: #e50914; color: #e50914; }
+
+    </style>
+</head>
+<body>
+
+    <section class="cinema-header">
+        <h1>Nossos <span>Cinemas</span></h1>
+        <div class="search-city">
+            <input type="text" placeholder="Digite sua cidade ou shopping...">
+        </div>
+    </section>
+
+    <main class="units-container">
+        
+        <div class="city-section">
+            <h2><i class="fas fa-map-marker-alt"></i> São Paulo</h2>
+            
+            <div class="unit-card">
+                <div class="unit-img" style="background-image: url('https://images.unsplash.com/photo-1440404653325-ab127d49abc1?q=80&w=400');"></div>
+                <div class="unit-info">
+                    <div>
+                        <h3>CinePro Shopping Eldorado</h3>
+                        <p>Av. Rebouças, 3970 - Pinheiros, São Paulo - SP</p>
+                        <div class="tech-tags">
+                            <span class="tech-tag active">IMAX</span>
+                            <span class="tech-tag active">VIP</span>
+                            <span class="tech-tag">4DX</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="unit-card">
+                <div class="unit-img" style="background-image: url('https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?q=80&w=400');"></div>
+                <div class="unit-info">
+                    <div>
+                        <h3>CinePro Paulista</h3>
+                        <p>Rua Treze de Maio, 1947 - Bela Vista, São Paulo - SP</p>
+                        <div class="tech-tags">
+                            <span class="tech-tag">IMAX</span>
+                            <span class="tech-tag active">VIP</span>
+                            <span class="tech-tag active">MACRO XE</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="city-section">
+            <h2><i class="fas fa-map-marker-alt"></i> Rio de Janeiro</h2>
+            
+            <div class="unit-card">
+                <div class="unit-img" style="background-image: url('https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?q=80&w=400');"></div>
+                <div class="unit-info">
+                    <div>
+                        <h3>CinePro Barra Shopping</h3>
+                        <p>Av. das Américas, 4666 - Barra da Tijuca, Rio de Janeiro - RJ</p>
+                        <div class="tech-tags">
+                            <span class="tech-tag active">IMAX</span>
+                            <span class="tech-tag active">4DX</span>
+                            <span class="tech-tag active">VIP</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+</body>
+</html>
