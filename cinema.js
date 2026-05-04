@@ -90,6 +90,36 @@ app.post('/finalizar-reserva', async (req, res) => {
     }
 })
 
+app.get('/perfil.html', (req, res) => {
+    if (usuarioLogado) {
+        res.sendFile(path.join(__dirname, 'perfil.html'))
+    } else {
+        res.redirect('/login.html')
+    }
+})
+
+app.get('/meus-ingressos', async (req, res) => {
+    const usuario = req.query.usuario
+    try {
+        let pool = await sql.connect(config)
+        
+        let result = await pool.request()
+            .input('nome', sql.VarChar, usuario)
+            .query(`
+                SELECT I.nome_filme, I.assento, I.data_compra 
+                FROM Ingressos I
+                JOIN Usuarios U ON I.usuario_id = U.id
+                WHERE U.usuario = @nome
+                ORDER BY I.data_compra DESC
+            `)
+
+        res.json(result.recordset)
+    } catch (err) {
+        console.error(err)
+        res.status(500).send("Erro ao buscar ingressos")
+    }
+})
+
 app.get('/sessao.html', (req, res) => {
     if (usuarioLogado) res.sendFile(path.join(__dirname, 'sessao.html'))
     else res.redirect('/login.html')
