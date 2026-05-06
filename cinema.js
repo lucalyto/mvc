@@ -3,21 +3,22 @@ const sql = require('mssql/msnodesqlv8')
 const path = require('path') 
 const app = express()
 
-let usuarioLogado = false
-
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
+
+app.use(express.static(path.join(__dirname, 'html')))
+app.use(express.static(path.join(__dirname, 'imagens')))
+app.use(express.static(__dirname))
 
 const config = {
     connectionString: 'Driver={ODBC Driver 17 for SQL Server};Server=TBS0676772W11-1\\SQLEXPRESS;Database=ProjetoCinema;Trusted_Connection=yes;'
 }
 
+
 app.post('/cadastrar', async (req, res) => {
     const { usuario, senha } = req.body
-
     try {
         let pool = await sql.connect(config)
-        
         await pool.request()
             .input('user', sql.VarChar, usuario)
             .input('pass', sql.VarChar, senha)
@@ -41,12 +42,11 @@ app.post('/logar', async (req, res) => {
             .query('SELECT * FROM Usuarios WHERE usuario = @user AND senha = @pass')
 
         if (result.recordset.length > 0) {
-            usuarioLogado = true
             res.send(`
                 <script>
                     localStorage.setItem('usuarioLogado', 'true')
                     localStorage.setItem('nomeUsuario', '${usuario}')
-                    const url = localStorage.getItem('urlPretendida') || 'menu.html'
+                    const url = localStorage.getItem('urlPretendida') || '/menu.html'
                     localStorage.removeItem('urlPretendida')
                     window.location.href = url
                 </script>
@@ -62,10 +62,8 @@ app.post('/logar', async (req, res) => {
 
 app.post('/finalizar-reserva', async (req, res) => {
     const { usuario, filme, assentos } = req.body
-
     try {
         let pool = await sql.connect(config)
-
         let userResult = await pool.request()
             .input('nome', sql.VarChar, usuario)
             .query('SELECT id FROM Usuarios WHERE usuario = @nome')
@@ -74,7 +72,6 @@ app.post('/finalizar-reserva', async (req, res) => {
         const userId = userResult.recordset[0].id
 
         const listaAssentos = assentos.split(', ')
-
         for (let umAssento of listaAssentos) {
             await pool.request()
                 .input('uid', sql.Int, userId)
@@ -82,7 +79,6 @@ app.post('/finalizar-reserva', async (req, res) => {
                 .input('seat', sql.VarChar, umAssento)
                 .query('INSERT INTO Ingressos (usuario_id, nome_filme, assento) VALUES (@uid, @filme, @seat)')
         }
-
         res.status(200).send("Ingressos salvos com sucesso!")
     } catch (err) {
         console.error(err)
@@ -90,19 +86,10 @@ app.post('/finalizar-reserva', async (req, res) => {
     }
 })
 
-app.get('/perfil.html', (req, res) => {
-    if (usuarioLogado) {
-        res.sendFile(path.join(__dirname, 'perfil.html'))
-    } else {
-        res.redirect('/login.html')
-    }
-})
-
 app.get('/meus-ingressos', async (req, res) => {
     const usuario = req.query.usuario
     try {
         let pool = await sql.connect(config)
-        
         let result = await pool.request()
             .input('nome', sql.VarChar, usuario)
             .query(`
@@ -112,7 +99,6 @@ app.get('/meus-ingressos', async (req, res) => {
                 WHERE U.usuario = @nome
                 ORDER BY I.data_compra DESC
             `)
-
         res.json(result.recordset)
     } catch (err) {
         console.error(err)
@@ -120,53 +106,13 @@ app.get('/meus-ingressos', async (req, res) => {
     }
 })
 
-app.get('/sessao.html', (req, res) => {
-    if (usuarioLogado) res.sendFile(path.join(__dirname, 'sessao.html'))
-    else res.redirect('/login.html')
-})
-
-app.get('/assentos.html', (req, res) => {
-    if (usuarioLogado) res.sendFile(path.join(__dirname, 'assentos.html'))
-    else res.redirect('/login.html')
-})
-
-app.get('/ingressos.html', (req, res) => {
-    if (usuarioLogado) res.sendFile(path.join(__dirname, 'ingressos.html'))
-    else res.redirect('/login.html')
-})
-
-app.use(express.static(__dirname))
-
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'menu.html'))
+    res.sendFile(path.join(__dirname, 'html', 'menu.html'))
 })
 
-app.get('/login.html', (req, res) => {
-    res.sendFile(path.join(__dirname, 'login.html'))
-})
-
-app.get('/cadastro.html', (req, res) => {
-    res.sendFile(path.join(__dirname, 'cadastro.html'))
-})
-
-app.get('/em-breve.html', (req, res) => {
-    res.sendFile(path.join(__dirname, 'em-breve.html'))
-})
-
-app.get('/sessoes-vip.html', (req, res) => {
-    res.sendFile(path.join(__dirname, 'sessoes-vip.html'))
-})
-
-app.get('/nossos-cinemas.html', (req, res) => {
-    res.sendFile(path.join(__dirname, 'nossos-cinemas.html'))
-})
-
-app.get('/promocoes.html', (req, res) => {
-    res.sendFile(path.join(__dirname, 'promocoes.html'))
-})
-
-app.get('/precos.html', (req, res) => {
-    res.sendFile(path.join(__dirname, 'precos.html'))
+app.get('/:page.html', (req, res) => {
+    const page = req.params.page;
+    res.sendFile(path.join(__dirname, 'html', `${page}.html`))
 })
 
 const PORT = 4000

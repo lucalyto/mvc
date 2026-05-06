@@ -577,14 +577,14 @@ body {
                 <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1"></button>
             </div>
             <div class="carousel-inner">
-                    <div class="carousel-item active" style="background-image: url('mario.jpg');">
+                    <div class="carousel-item active" style="background-image: url('../imagens/mario.jpg');">
                         <div class="carousel-caption">
                             <h1>MARIO<br>GALAXY</h1>
                             <a href="javascript:void(0)" onclick="verificarAcesso('Mario Galaxy')" class="btn-buy-ticket">Ingressos</a>
                         </div>
                     </div>
 
-                    <div class="carousel-item" style="background-image: url('banner-filme.jpg');">
+                    <div class="carousel-item" style="background-image: url('../imagens/banner-filme.jpg');">
                         <div class="carousel-caption">
                             <h1>ELES VÃO<br>TE MATAR</h1>
                             <a href="javascript:void(0)" onclick="verificarAcesso('Eles Vao Te Matar')" class="btn-buy-ticket">Ingressos</a>
@@ -611,7 +611,7 @@ body {
         <div class="movie-card-v2">
             <div class="poster-container">
                 <span class="age-badge" style="background-color: #ebeb2c;">14</span>
-                <img src="velhos.jpg" alt="Velhos Bandidos">
+                <img src="../imagens/velhos.jpg" alt="Velhos Bandidos">
                 <div class="card-overlay">
                     <a href="javascript:void(0)" onclick="verificarAcesso('Velhos Bandidos')" class="btn-buy-ticket">Ingressos</a>
                 </div>
@@ -628,7 +628,7 @@ body {
         <div class="movie-card-v2">
             <div class="poster-container">
                 <span class="age-badge" style="background-color: #e50914;">16</span>
-                <img src="reminders.jpg" alt="Uma Segunda Chance">
+                <img src="../imagens/reminders.jpg" alt="Uma Segunda Chance">
                 <div class="card-overlay">
                     <a href="javascript:void(0)" onclick="verificarAcesso('Uma Segunda Chance')" class="btn-buy-ticket">Ingressos</a>
                 </div>
@@ -645,7 +645,7 @@ body {
         <div class="movie-card-v2">
             <div class="poster-container">
                 <span class="age-badge" style="background-color: #e50914;">16</span>
-                <img src="nuremberg.jpg" alt="Nuremberg">
+                <img src="../imagens/nuremberg.jpg" alt="Nuremberg">
                 <div class="card-overlay">
                     <a href="javascript:void(0)" onclick="verificarAcesso('Nuremberg')" class="btn-buy-ticket">Ingressos</a>
                 </div>
@@ -662,7 +662,7 @@ body {
         <div class="movie-card-v2">
             <div class="poster-container">
                 <span class="age-badge" style="background-color: #e50914;">16</span>
-                <img src="mumia.jpg" alt="Maldição da Múmia">
+                <img src="../imagens/mumia.jpg" alt="Maldição da Múmia">
                 <div class="card-overlay">
                     <a href="javascript:void(0)" onclick="verificarAcesso('Maldição da Múmia')" class="btn-buy-ticket">Ingressos</a>
                 </div>
@@ -748,14 +748,19 @@ body {
 <script>
 
 function verificarAcesso(nomeFilme) {
+    console.log("Função verificarAcesso chamada para:", nomeFilme);
     const statusLogin = localStorage.getItem('usuarioLogado');
-    
+
+    const urlDestino = `/sessao.html?filme=${encodeURIComponent(nomeFilme)}`;
+
     if (statusLogin === 'true') {
-        window.location.href = `sessao.html?filme=${encodeURIComponent(nomeFilme)}`;
+        console.log("Usuário logado. Redirecionando...");
+        window.location.href = urlDestino;
     } else {
-        console.log("Acesso negado: Usuário não logado.");
-        localStorage.setItem('urlPretendida', `sessao.html?filme=${encodeURIComponent(nomeFilme)}`);
-        window.location.href = "login.html";
+        console.log("Usuário não logado. Salvando intenção e indo para login.");
+        alert("Por favor, faça login para reservar o seu lugar.");
+        localStorage.setItem('urlPretendida', urlDestino);
+        window.location.href = "/login.html";
     }
 }
 </script>
