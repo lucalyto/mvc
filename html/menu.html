@@ -341,8 +341,12 @@ body {
     transition: opacity 0.3s ease;
 }
 
-.movie-card-v2:hover .card-overlay { opacity: 1; }
-.movie-card-v2:hover img { transform: scale(1.1); }
+.movie-card-v2:hover .card-overlay { 
+    opacity: 1; 
+}
+.movie-card-v2:hover img { 
+    transform: scale(1.1); 
+}
 
 .btn-buy-ticket {
     background-color: #e50914;
@@ -387,7 +391,9 @@ body {
     color: #ffb800;
     font-weight: 600;
 }
-.fw-900 { font-weight: 900; }
+.fw-900 { 
+    font-weight: 900; 
+}
 
 .btn-small {
     padding: 8px 18px;
@@ -406,7 +412,7 @@ body {
 }
 
 .promo-section-container {
-    padding: 80px 5%;
+    padding: 40px;
     }
 
 .promo-typo-card {
@@ -414,6 +420,9 @@ body {
     backdrop-filter: blur(15px);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 24px;
+    width: 100%;
+    max-width: 1320px; 
+    margin: 0 auto;
     padding: 50px;
     display: flex;
     align-items: center;
@@ -435,7 +444,10 @@ body {
     pointer-events: none;
 }
 
-.promo-main-info { position: relative; z-index: 2; max-width: 60%; }
+.promo-main-info { 
+    position: relative; 
+    z-index: 2; 
+    max-width: 60%; }
 
 .promo-tag-outline {
     display: inline-block;
@@ -530,6 +542,34 @@ body {
     font-size: 14px 
 }
 
+.vip-style {
+    background: linear-gradient(45deg, #1a1a1a, #000) !important;
+    border: 1px solid #c19b33 !important;
+}
+
+.gold-tag {
+    color: #c19b33 !important;
+    border-color: #c19b33 !important;
+}
+
+.gold-text {
+    color: #c19b33 !important;
+    text-shadow: 0 0 20px rgba(193, 155, 51, 0.4) !important;
+}
+
+.gold-btn {
+    background-color: #c19b33 !important;
+    border: none !important;
+    margin-top: 15px;
+}
+
+.icon-gold {
+    font-size: 80px;
+    color: #c19b33;
+    margin-bottom: 10px;
+    display: block;
+}
+
 </style>
 
 </head>
@@ -604,7 +644,6 @@ body {
 <section class="section-padding">
     <div class="d-flex justify-content-between align-items-end mb-5">
         <h2 class="fw-bold text-uppercase m-0" style="border-left: 4px solid #e50914; padding-left: 15px;">Filmes Em Cartaz</h2>
-        <p class="text-muted small m-0 text-uppercase">Sessões hoje</p>
     </div> 
     
     <div class="movie-grid">
@@ -675,9 +714,24 @@ body {
                 </div>
             </div>
         </div>
-
     </div>
 </section>
+
+<section class="promo-section-container">
+    <div class="promo-typo-card vip-style">
+        <div class="promo-main-info">
+            <div class="promo-tag-outline gold-tag">Premium</div>
+            <h3 class="display-text">EXPERIÊNCIA <span class="highlight gold-text">VIP</span></h3>
+            <p class="description-text">Poltronas reclináveis, serviço de garçom e um menu exclusivo para quem não aceita menos que o melhor.</p>
+            <a href="sessoes-vip.html" class="btn-ticket-main gold-btn">CONHECER SALAS VIP</a>
+        </div>
+        <div class="promo-side-visual">
+            <i class="fas fa-crown icon-gold"></i>
+            <span class="off-text gold-text">PREMIUM</span>
+        </div>
+    </div>
+</section>
+
 <section class="promo-section-container">
     <div id="promoCarousel" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
