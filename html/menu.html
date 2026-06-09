@@ -16,11 +16,11 @@
 }
 
 body {
-    background-color: #050505;
+    background: #050505;
     color: #fff;
     padding-top: 90px;
 }
-
+    
 .header-container {
     position: fixed;
     top: 0;
@@ -205,7 +205,7 @@ body {
 .carousel-item {
     height: 100%;
 }
-
+ 
 .carousel-item {
     background-size: cover;
     background-position: center;
@@ -272,82 +272,131 @@ body {
 
 .section-padding {
     padding: 80px 40px;
-    max-width: 1400px;
-    margin: 0 auto;
+    background-color: #050505;
 }
 
 .movie-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 40px;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 30px;
 }
 
 .movie-card-v2 { 
     position: relative;
     background: #111;
-    border-radius: 20px;
-    padding: 15px;
+    border-radius: 16px;
+    overflow: hidden;
     border: 1px solid rgba(255,255,255,0.05);
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition: all 0.4s ease;
 }
 
 .movie-card-v2:hover {
-    transform: translateY(-10px);
-    border-color: rgba(229, 9, 20, 0.4);
-    box-shadow: 0 15px 30px rgba(0,0,0,0.5);
+    transform: translateY(-12px) scale(1.02);
+    border-color: #e50914;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+    z-index: 10;
 }
+
 
 .poster-container {
     position: relative;
-    border-radius: 15px;
     overflow: hidden;
-    aspect-ratio: 2 / 3; 
+    aspect-ratio: 2 / 3;
 }
 
 .poster-container img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.6s ease;
+    transition: transform 0.8s cubic-bezier(0.2, 1, 0.3, 1);
 }
 
-.age-badge {
-    position: absolute;
-    top: 15px;
-    right: 15px; 
-    width: 32px;
-    height: 32px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 6px;
-    font-weight: 800;
-    font-size: 14px;
-    color: #fff;
-    z-index: 2;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+.movie-card-v2:hover .poster-container img {
+    transform: scale(1.15); 
 }
 
 .card-overlay {
     position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: linear-gradient(to top, rgba(0,0,0,0.9) 10%, transparent 60%);
+    inset: 0; 
+    background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, transparent 100%);
     display: flex;
-    flex-direction: column;
     align-items: center;
-    justify-content: flex-end;
-    padding-bottom: 30px;
+    justify-content: center;
     opacity: 0;
-    transition: opacity 0.3s ease;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(2px);
 }
 
-.movie-card-v2:hover .card-overlay { 
-    opacity: 1; 
-}
-.movie-card-v2:hover img { 
-    transform: scale(1.1); 
+.movie-card-v2:hover .card-overlay {
+    opacity: 1;
 }
 
+.btn-buy-ticket {
+    background: #e50914;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 13px;
+    letter-spacing: 1px;
+    transform: translateY(20px);
+    transition: all 0.4s ease;
+    border: none;
+}
+
+.movie-card-v2:hover .btn-buy-ticket {
+    transform: translateY(0);
+}
+
+.movie-info-box {
+    padding: 20px;
+    background: linear-gradient(180deg, #111 0%, #0a0a0a 100%);
+}
+
+.movie-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 8px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; 
+}
+
+.movie-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.movie-genre {
+    font-size: 0.85rem;
+    color: #888;
+}
+
+.movie-rating {
+    background: rgba(255, 193, 7, 0.1);
+    color: #ffc107;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-weight: 700;
+    font-size: 0.85rem;
+}
+
+.age-badge {
+    position: absolute;
+    top: 12px;
+    left: 12px; 
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-weight: 900;
+    font-size: 12px;
+    color: #fff;
+    z-index: 5;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
 .btn-buy-ticket {
     background-color: #e50914;
     color: white;
@@ -447,7 +496,8 @@ body {
 .promo-main-info { 
     position: relative; 
     z-index: 2; 
-    max-width: 60%; }
+    max-width: 60%; 
+}
 
 .promo-tag-outline {
     display: inline-block;
@@ -571,7 +621,6 @@ body {
 }
 
 </style>
-
 </head>
 <body>
 
@@ -631,7 +680,7 @@ body {
                         </div>
                     </div>
             </div>
-
+''
             <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true" style="width: 20px;"></span>
             </button>
@@ -641,76 +690,80 @@ body {
         </div>
     </section>
 
-<section class="section-padding">
-    <div class="d-flex justify-content-between align-items-end mb-5">
-        <h2 class="fw-bold text-uppercase m-0" style="border-left: 4px solid #e50914; padding-left: 15px;">Filmes Em Cartaz</h2>
-    </div> 
-    
-    <div class="movie-grid">
-        <div class="movie-card-v2">
-            <div class="poster-container">
-                <span class="age-badge" style="background-color: #ebeb2c;">14</span>
-                <img src="../imagens/velhos.jpg" alt="Velhos Bandidos">
-                <div class="card-overlay">
-                    <a href="javascript:void(0)" onclick="verificarAcesso('Velhos Bandidos')" class="btn-buy-ticket">Ingressos</a>
+<section class="section-padding" style="background-color: #050505;">
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-end mb-5">
+            <h2 class="fw-bold text-uppercase m-0" style="border-left: 4px solid #e50914; padding-left: 15px; color: white;">
+                Filmes Em Cartaz
+            </h2>
+        </div> 
+        
+        <div class="movie-grid">
+            <div class="movie-card-v2">
+                <div class="poster-container">
+                    <span class="age-badge" style="background-color: #ebeb2c;">14</span>
+                    <img src="../imagens/velhos.jpg" alt="Velhos Bandidos">
+                    <div class="card-overlay">
+                        <a href="javascript:void(0)" onclick="verificarAcesso('Velhos Bandidos')" class="btn-buy-ticket">Ingressos</a>
+                    </div>
+                </div>
+                <div class="movie-info-box">
+                    <h3 class="movie-title">Velhos Bandidos</h3>
+                    <div class="movie-meta">
+                        <span class="movie-genre">Ação / Aventura</span>
+                        <span class="movie-rating"><i class="fas fa-star me-1"></i>8.4</span>
+                    </div>
                 </div>
             </div>
-            <div class="movie-info-box">
-                <h3 class="movie-title">Velhos Bandidos</h3>
-                <div class="movie-meta">
-                    <span class="movie-genre">Ação / Aventura</span>
-                    <span class="movie-rating"><i class="fas fa-star me-1"></i>8.4</span>
-                </div>
-            </div>
-        </div>
 
-        <div class="movie-card-v2">
-            <div class="poster-container">
-                <span class="age-badge" style="background-color: #e50914;">16</span>
-                <img src="../imagens/reminders.jpg" alt="Uma Segunda Chance">
-                <div class="card-overlay">
-                    <a href="javascript:void(0)" onclick="verificarAcesso('Uma Segunda Chance')" class="btn-buy-ticket">Ingressos</a>
+            <div class="movie-card-v2">
+                <div class="poster-container">
+                    <span class="age-badge" style="background-color: #e50914;">16</span>
+                    <img src="../imagens/reminders.jpg" alt="Uma Segunda Chance">
+                    <div class="card-overlay">
+                        <a href="javascript:void(0)" onclick="verificarAcesso('Uma Segunda Chance')" class="btn-buy-ticket">Ingressos</a>
+                    </div>
+                </div>
+                <div class="movie-info-box">
+                    <h3 class="movie-title">Uma Segunda Chance</h3>
+                    <div class="movie-meta">
+                        <span class="movie-genre">Romance / Amor</span>
+                        <span class="movie-rating"><i class="fas fa-star me-1"></i>9.1</span>
+                    </div>
                 </div>
             </div>
-            <div class="movie-info-box">
-                <h3 class="movie-title">Uma Segunda Chance</h3>
-                <div class="movie-meta">
-                    <span class="movie-genre">Romance / Amor</span>
-                    <span class="movie-rating"><i class="fas fa-star me-1"></i>9.1</span>
-                </div>
-            </div>
-        </div>
 
-        <div class="movie-card-v2">
-            <div class="poster-container">
-                <span class="age-badge" style="background-color: #e50914;">16</span>
-                <img src="../imagens/nuremberg.jpg" alt="Nuremberg">
-                <div class="card-overlay">
-                    <a href="javascript:void(0)" onclick="verificarAcesso('Nuremberg')" class="btn-buy-ticket">Ingressos</a>
+            <div class="movie-card-v2">
+                <div class="poster-container">
+                    <span class="age-badge" style="background-color: #e50914;">16</span>
+                    <img src="../imagens/nuremberg.jpg" alt="Nuremberg">
+                    <div class="card-overlay">
+                        <a href="javascript:void(0)" onclick="verificarAcesso('Nuremberg')" class="btn-buy-ticket">Ingressos</a>
+                    </div>
+                </div>
+                <div class="movie-info-box">
+                    <h3 class="movie-title">Nuremberg</h3>
+                    <div class="movie-meta">
+                        <span class="movie-genre">Suspense / Terror</span>
+                        <span class="movie-rating"><i class="fas fa-star me-1"></i>7.8</span>
+                    </div>
                 </div>
             </div>
-            <div class="movie-info-box">
-                <h3 class="movie-title">Nuremberg</h3>
-                <div class="movie-meta">
-                    <span class="movie-genre">Suspense / Terror</span>
-                    <span class="movie-rating"><i class="fas fa-star me-1"></i>7.8</span>
-                </div>
-            </div>
-        </div>
 
-        <div class="movie-card-v2">
-            <div class="poster-container">
-                <span class="age-badge" style="background-color: #e50914;">16</span>
-                <img src="../imagens/mumia.jpg" alt="Maldição da Múmia">
-                <div class="card-overlay">
-                    <a href="javascript:void(0)" onclick="verificarAcesso('Maldição da Múmia')" class="btn-buy-ticket">Ingressos</a>
+            <div class="movie-card-v2">
+                <div class="poster-container">
+                    <span class="age-badge" style="background-color: #e50914;">16</span>
+                    <img src="../imagens/mumia.jpg" alt="Maldição da Múmia">
+                    <div class="card-overlay">
+                        <a href="javascript:void(0)" onclick="verificarAcesso('Maldição da Múmia')" class="btn-buy-ticket">Ingressos</a>
+                    </div>
                 </div>
-            </div>
-            <div class="movie-info-box">
-                <h3 class="movie-title">Maldição da Múmia</h3>
-                <div class="movie-meta">
-                    <span class="movie-genre">Terror / Aventura</span>
-                    <span class="movie-rating"><i class="fas fa-star me-1"></i>6.5</span>
+                <div class="movie-info-box">
+                    <h3 class="movie-title">Maldição da Múmia</h3>
+                    <div class="movie-meta">
+                        <span class="movie-genre">Terror / Aventura</span>
+                        <span class="movie-rating"><i class="fas fa-star me-1"></i>6.5</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -802,19 +855,16 @@ body {
 <script>
 
 function verificarAcesso(nomeFilme) {
-    console.log("Função verificarAcesso chamada para:", nomeFilme);
-    const statusLogin = localStorage.getItem('usuarioLogado');
+    console.log("Função verificarAcesso chamada para:", nomeFilme)
+    const statusLogin = localStorage.getItem('usuarioLogado')
 
-    const urlDestino = `/sessao.html?filme=${encodeURIComponent(nomeFilme)}`;
+    const urlDestino = `/sessao.html?filme=${encodeURIComponent(nomeFilme)}`
 
     if (statusLogin === 'true') {
-        console.log("Usuário logado. Redirecionando...");
-        window.location.href = urlDestino;
+        window.location.href = urlDestino
     } else {
-        console.log("Usuário não logado. Salvando intenção e indo para login.");
-        alert("Por favor, faça login para reservar o seu lugar.");
-        localStorage.setItem('urlPretendida', urlDestino);
-        window.location.href = "/login.html";
+        localStorage.setItem('urlPretendida', urlDestino)
+        window.location.href = "/login.html"
     }
 }
 </script>

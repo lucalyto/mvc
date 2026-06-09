@@ -134,33 +134,31 @@ text-transform: uppercase;
         };
 
     window.onload = function() {
-        var endereco = window.location.href;
+        var endereco = window.location.href
 
-        var parametros = new URLSearchParams(window.location.search);
-        var filmeNome = parametros.get('filme');
+        var parametros = new URLSearchParams(window.location.search)
+        var filmeNome = parametros.get('filme')
 
-        var titulo = document.getElementById('exibicaoTitulo');
-        var sala = document.getElementById('exibicaoSala');
-        var divBotoes = document.getElementById('containerHorarios');
+        var titulo = document.getElementById('exibicaoTitulo')
+        var sala = document.getElementById('exibicaoSala')
+        var divBotoes = document.getElementById('containerHorarios')
 
-        var dadosDoFilme = programacao[filmeNome];
+        var dadosDoFilme = programacao[filmeNome]
 
         if (dadosDoFilme) {
-            titulo.innerText = filmeNome;
-            sala.innerText = dadosDoFilme.sala;
+            titulo.innerText = filmeNome
+            sala.innerText = dadosDoFilme.sala
 
-            divBotoes.innerHTML = "";
+            divBotoes.innerHTML = ""
 
             for (var i = 0; i < dadosDoFilme.horarios.length; i++) {
-                var hora = dadosDoFilme.horarios[i];
-
-                var link = "assentos.html?filme=" + filmeNome + "&hora=" + hora + "&sala=" + dadosDoFilme.sala;
-
-                divBotoes.innerHTML = divBotoes.innerHTML + '<a href="' + link + '" class="btn-horario">' + hora + '</a>';
+                var hora = dadosDoFilme.horarios[i]
+                var link = "assentos.html?filme=" + filmeNome + "&hora=" + hora + "&sala=" + dadosDoFilme.sala
+                divBotoes.innerHTML = divBotoes.innerHTML + '<a href="' + link + '" class="btn-horario">' + hora + '</a>'
             }
         } else {
-            titulo.innerText = "Filme não encontrado";
-            sala.style.display = "none";
+            titulo.innerText = "Filme não encontrado"
+            sala.style.display = "none"
         }
     }
     </script>

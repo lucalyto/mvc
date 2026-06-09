@@ -1,21 +1,8 @@
-const express = require('express')
-const sql = require('mssql/msnodesqlv8')
-const path = require('path') 
-const app = express()
+const express = require('express');
+const router = express.Router();
+const { sql, config } = require('./config/database'); 
 
-app.use(express.urlencoded({ extended: true }))
-app.use(express.json())
-
-app.use(express.static(path.join(__dirname, 'html')))
-app.use(express.static(path.join(__dirname, 'imagens')))
-app.use(express.static(__dirname))
-
-const config = {
-    connectionString: 'Driver={ODBC Driver 17 for SQL Server};Server=TBS0676772W11-1\\SQLEXPRESS;Database=ProjetoCinema;Trusted_Connection=yes;'
-}
-
-
-app.post('/cadastrar', async (req, res) => {
+router.post('/cadastrar', async (req, res) => {
     const { usuario, senha } = req.body
     try {
         let pool = await sql.connect(config)
@@ -32,7 +19,7 @@ app.post('/cadastrar', async (req, res) => {
     }
 })
 
-app.post('/logar', async (req, res) => {
+router.post('/logar', async (req, res) => {
     const { usuario, senha } = req.body
     try {
         let pool = await sql.connect(config)
@@ -60,7 +47,7 @@ app.post('/logar', async (req, res) => {
     }
 })
 
-app.post('/finalizar-reserva', async (req, res) => {
+router.post('/finalizar-reserva', async (req, res) => {
     const { usuario, filme, assentos } = req.body
     try {
         let pool = await sql.connect(config)
@@ -86,7 +73,7 @@ app.post('/finalizar-reserva', async (req, res) => {
     }
 })
 
-app.get('/meus-ingressos', async (req, res) => {
+router.get('/meus-ingressos', async (req, res) => {
     const usuario = req.query.usuario
     try {
         let pool = await sql.connect(config)
@@ -106,16 +93,4 @@ app.get('/meus-ingressos', async (req, res) => {
     }
 })
 
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'html', 'menu.html'))
-})
-
-app.get('/:page.html', (req, res) => {
-    const page = req.params.page;
-    res.sendFile(path.join(__dirname, 'html', `${page}.html`))
-})
-
-const PORT = 4000
-app.listen(PORT, () => {
-    console.log('Servidor rodando em http://localhost:' + PORT)
-})
+module.exports = router;
