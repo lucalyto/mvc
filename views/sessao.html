@@ -122,45 +122,6 @@ text-transform: uppercase;
         <a href="menu.html" class="btn-voltar"><i class="fas fa-arrow-left me-2"></i> Voltar para a vitrine</a>
     </div>
 
-    <script>
-
-        const programacao = {
-            "Mario Galaxy": { sala: "SALA 01 IMAX", horarios: ["14:30", "17:00", "20:00", "22:30"] },
-            "Eles Vao Te Matar": { sala: "SALA 02 VIP", horarios: ["15:00", "18:30", "21:45"] },
-            "Velhos Bandidos": { sala: "SALA 03", horarios: ["13:00", "16:00", "19:00"] },
-            "Uma Segunda Chance": { sala: "SALA 04 KIDS", horarios: ["11:00", "14:00", "16:30"] },
-            "Nuremberg": { sala: "SALA 05", horarios: ["20:00", "22:15", "00:00"] },
-            "Maldição da Múmia": { sala: "SALA 06", horarios: ["14:00", "17:30", "21:00"] }
-        };
-
-    window.onload = function() {
-        var endereco = window.location.href
-
-        var parametros = new URLSearchParams(window.location.search)
-        var filmeNome = parametros.get('filme')
-
-        var titulo = document.getElementById('exibicaoTitulo')
-        var sala = document.getElementById('exibicaoSala')
-        var divBotoes = document.getElementById('containerHorarios')
-
-        var dadosDoFilme = programacao[filmeNome]
-
-        if (dadosDoFilme) {
-            titulo.innerText = filmeNome
-            sala.innerText = dadosDoFilme.sala
-
-            divBotoes.innerHTML = ""
-
-            for (var i = 0; i < dadosDoFilme.horarios.length; i++) {
-                var hora = dadosDoFilme.horarios[i]
-                var link = "assentos.html?filme=" + filmeNome + "&hora=" + hora + "&sala=" + dadosDoFilme.sala
-                divBotoes.innerHTML = divBotoes.innerHTML + '<a href="' + link + '" class="btn-horario">' + hora + '</a>'
-            }
-        } else {
-            titulo.innerText = "Filme não encontrado"
-            sala.style.display = "none"
-        }
-    }
-    </script>
+<script src="js/sessaoView.js"></script>
 </body>
 </html>

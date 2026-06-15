@@ -1,7 +1,13 @@
-const sql = require('mssql/msnodesqlv8')
+require('dotenv').config();
 
-const config = {
-    connectionString: 'Driver={ODBC Driver 17 for SQL Server};Server=TBS0676772W11-1\\SQLEXPRESS;Database=ProjetoCinema;Trusted_Connection=yes;'
-}
+const mysql = require('mysql2/promise')
 
-module.exports = { sql, config }
+const conexao = mysql.createPool({
+    host: process.env.DB_HOST,
+    port: process.env.DB_PORT,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,          
+    database: process.env.DB_NAME,
+})
+
+module.exports = conexao

@@ -132,16 +132,8 @@ input::placeholder {
 
 <script>
 document.getElementById('cadastroForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    localStorage.setItem('usuarioLogado', 'true')
+    e.preventDefault(); 
 
-    const urlPretendida = localStorage.getItem('urlPretendida')
-    
-    if (urlPretendida) {
-        localStorage.removeItem('urlPretendida')
-        window.location.href = urlPretendida
-    } else {
-        window.location.href = "menu.html"
-    }
-})
+    window.location.href = "login.html"; 
+});
 </script>

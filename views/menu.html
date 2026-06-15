@@ -286,8 +286,8 @@ body {
     background: #111;
     border-radius: 16px;
     overflow: hidden;
-    border: 1px solid rgba(255,255,255,0.05);
-    transition: all 0.4s ease;
+    border: 2px solid rgba(255,255,255,0.05);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease, box-shadow 0.4s ease;
 }
 
 .movie-card-v2:hover {
@@ -374,6 +374,7 @@ body {
 .movie-genre {
     font-size: 0.85rem;
     color: #888;
+    padding-left: 4px;
 }
 
 .movie-rating {
@@ -420,6 +421,7 @@ body {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis; 
+    padding-left: 4px;
 }
 
 .movie-meta {
@@ -462,7 +464,7 @@ body {
 
 .promo-section-container {
     padding: 40px;
-    }
+}
 
 .promo-typo-card {
     background: rgba(255, 255, 255, 0.03);
@@ -836,7 +838,7 @@ body {
         
         <div class="row justify-content-center">
             <div class="col-md-6">
-                <form action="" method="POST" class="text-center">
+                <form id="meuFormulario" class="text-center">
                     <div class="mb-3">
                         <textarea name="mensagem" class="form-control custom-input" rows="3" placeholder="Sua mensagem ou dúvida..." required></textarea>
                     </div>
@@ -851,23 +853,14 @@ body {
     </div>
 </section>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-<script>
-
-function verificarAcesso(nomeFilme) {
-    console.log("Função verificarAcesso chamada para:", nomeFilme)
-    const statusLogin = localStorage.getItem('usuarioLogado')
-
-    const urlDestino = `/sessao.html?filme=${encodeURIComponent(nomeFilme)}`
-
-    if (statusLogin === 'true') {
-        window.location.href = urlDestino
-    } else {
-        localStorage.setItem('urlPretendida', urlDestino)
-        window.location.href = "/login.html"
-    }
-}
-</script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script src="js/menuView.js"></script>
+    <script src="js/contatoView.js"></script>
+    
+</body>
+</html>
 </body>
 </html>
 
