@@ -19,6 +19,8 @@ body {
     background: #050505;
     color: #fff;
     padding-top: 90px;
+    overflow-x: hidden;
+    background-attachment: fixed; 
 }
     
 .header-container {
@@ -35,7 +37,7 @@ body {
 .header-scrolled {
     height: 75px;
     background: #000;
-}
+}   
 
 .navbar {
     max-width: 1400px;
@@ -90,9 +92,11 @@ body {
     bottom: 25px;
     left: 10px;
     width: 0;
-    height: 2px;
+    height: 3px; 
     background: #e50914;
+    border-radius: 4px;
     transition: width 0.3s ease;
+    box-shadow: 0 0 12px #e50914, 0 0 4px #e50914;
 }
 
 .nav-link:hover::after, 
@@ -188,7 +192,7 @@ body {
 
 .carousel-section {
     padding: 20px 0;
-    background-color: #050505;
+    background-color: transparent !important; 
 }
 
 #heroCarousel {
@@ -197,82 +201,77 @@ body {
     border-radius: 20px;
     overflow: hidden;
     aspect-ratio: 21 / 9;
-    min-height: 400px;
+    min-height: 440px;
     background-color: #111;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.7);
 }
 
 .carousel-inner, 
 .carousel-item {
     height: 100%;
 }
- 
+    
 .carousel-item {
     background-size: cover;
-    background-position: center;
+    background-position: center top;
+    position: relative;
 }
 
 .carousel-item::before {
     content: "";
     position: absolute;
     inset: 0;
+    z-index: 1;
 }
 
 .carousel-caption {
     text-align: left;
-    left: 5%;
+    left: 6%;
     top: 50%;
     transform: translateY(-50%);
     bottom: auto;
     padding: 0;
+    z-index: 2;
 }
 
 .carousel-caption h1 {
-    font-size: 70px;
+    font-size: 64px;
     font-weight: 900;
     text-transform: uppercase;
-    margin-bottom: 20px;
-    line-height: 1;
-}
-
-.btn-comprar-banner {
-    background-color: #fff;
-    color: #000;
-    border: none;
-    padding: 12px 30px;
-    border-radius: 50px;
-    font-weight: 800;
-    text-transform: uppercase;
-    font-size: 14px;
-    text-decoration: none;
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
+    margin-bottom: 25px;
+    line-height: 0.95;
+    letter-spacing: -2px;
+    text-shadow: 0 4px 15px rgba(0, 0, 0, 0.9);
 }
 
 .carousel-control-prev, 
 .carousel-control-next {
-    width: 40px;
-    height: 40px;
-    background: rgba(0,0,0,0.5);
+    width: 45px;
+    height: 45px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
     border-radius: 50%;
     top: auto;
-    bottom: 20px;
+    bottom: 30px;
+    opacity: 0.8;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.carousel-control-prev:hover, 
+.carousel-control-next:hover {
     opacity: 1;
+    background: #e50914;
+    border-color: #e50914;
+    transform: scale(1.1);
 }
 
-.carousel-control-prev {
-    left: auto;
-    right: 70px;
-}
-
-.carousel-control-next {
-    left: auto;
-    right: 20px;
-}
+.carousel-control-prev { left: auto; right: 85px; }
+.carousel-control-next { left: auto; right: 30px; }
 
 .section-padding {
-    padding: 80px 40px;
-    background-color: #050505;
+    padding: 60px 40px;
+    background-color: transparent !important;
 }
 
 .movie-grid {
@@ -286,17 +285,12 @@ body {
     background: #111;
     border-radius: 16px;
     overflow: hidden;
-    border: 2px solid rgba(255,255,255,0.05);
-    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease, box-shadow 0.4s ease;
+    border: 1px solid rgba(255,255,255,0.05);
 }
 
 .movie-card-v2:hover {
-    transform: translateY(-12px) scale(1.02);
-    border-color: #e50914;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.6);
     z-index: 10;
 }
-
 
 .poster-container {
     position: relative;
@@ -311,20 +305,17 @@ body {
     transition: transform 0.8s cubic-bezier(0.2, 1, 0.3, 1);
 }
 
-.movie-card-v2:hover .poster-container img {
-    transform: scale(1.15); 
-}
-
 .card-overlay {
     position: absolute;
     inset: 0; 
-    background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, transparent 100%);
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.2) 100%);
     display: flex;
     align-items: center;
     justify-content: center;
     opacity: 0;
-    transition: all 0.3s ease;
+    transition: opacity 0.3s ease;
     backdrop-filter: blur(2px);
+    z-index: 2; 
 }
 
 .movie-card-v2:hover .card-overlay {
@@ -334,35 +325,43 @@ body {
 .btn-buy-ticket {
     background: #e50914;
     color: white;
-    padding: 12px 24px;
+    padding: 12px 26px;
     border-radius: 50px;
     text-decoration: none;
-    font-weight: 700;
+    font-weight: 800;
     text-transform: uppercase;
-    font-size: 13px;
+    font-size: 12px;
     letter-spacing: 1px;
     transform: translateY(20px);
-    transition: all 0.4s ease;
+    transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), background-color 0.3s ease, box-shadow 0.3s ease;
     border: none;
+    display: inline-block;
+    z-index: 3; 
 }
 
 .movie-card-v2:hover .btn-buy-ticket {
     transform: translateY(0);
 }
 
+.btn-buy-ticket:hover {
+    background: #b20710;
+    color: #fff;
+    box-shadow: 0 0 20px rgba(229, 9, 20, 0.6);
+}
+
 .movie-info-box {
-    padding: 20px;
+    padding: 18px 15px;
     background: linear-gradient(180deg, #111 0%, #0a0a0a 100%);
 }
 
 .movie-title {
-    font-size: 1.1rem;
-    font-weight: 700;
-    color: #fff;
+    font-size: 18px; 
+    font-weight: 800; 
     margin-bottom: 8px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis; 
+    color: #fff;
 }
 
 .movie-meta {
@@ -372,104 +371,86 @@ body {
 }
 
 .movie-genre {
-    font-size: 0.85rem;
-    color: #888;
-    padding-left: 4px;
+    font-size: 11px; 
+    color: #e50914; 
+    text-transform: uppercase; 
+    font-weight: 700;
+    letter-spacing: 0.5px;
 }
 
 .movie-rating {
-    background: rgba(255, 193, 7, 0.1);
-    color: #ffc107;
-    padding: 2px 8px;
-    border-radius: 4px;
+    font-size: 12px;
+    color: #ffb800;
     font-weight: 700;
-    font-size: 0.85rem;
+    background: rgba(255, 184, 0, 0.1);
+    padding: 3px 8px;
+    border-radius: 6px;
 }
 
 .age-badge {
     position: absolute;
     top: 12px;
     left: 12px; 
-    padding: 4px 8px;
-    border-radius: 4px;
+    padding: 5px 10px;
+    border-radius: 6px;
     font-weight: 900;
-    font-size: 12px;
+    font-size: 11px;
     color: #fff;
     z-index: 5;
     text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.4);
 }
-.btn-buy-ticket {
-    background-color: #e50914;
-    color: white;
-    text-decoration: none;
-    padding: 10px 25px;
-    border-radius: 50px;
+
+.age-badge.age-L  { background-color: #00b551; }
+.age-badge.age-12 { background-color: #df9c00; color: #fff; }
+.age-badge.age-14 { background-color: #cf6200; color: #fff; }
+.age-badge.age-16 { background-color: #d81d24; }
+
+.section-title-header {
     font-weight: 800;
-    font-size: 12px;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    margin: 0;
+    border-left: 4px solid #e50914;
+    padding-left: 15px;
+    color: #ffffff;
+    letter-spacing: -0.5px;
 }
 
-.movie-info-box {
-    padding: 15px 5px 5px;
-}
-
-.movie-title { 
-    font-size: 18px; 
-    font-weight: 800; 
-    margin-bottom: 5px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis; 
-    padding-left: 4px;
-}
-
-.movie-meta {
+.carousel-controls {
     display: flex;
-    justify-content: space-between;
+}
+
+.btn-nav-arrow {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: #ffffff;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
     align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
 
-.movie-genre { 
-    font-size: 11px; 
-    color: #e50914; 
-    text-transform: uppercase; 
-    font-weight: 700;
-}
-
-.movie-rating {
-    font-size: 12px;
-    color: #ffb800;
-    font-weight: 600;
-}
-.fw-900 { 
-    font-weight: 900; 
-}
-
-.btn-small {
-    padding: 8px 18px;
-    border-radius: 6px;
-    text-decoration: none;
-    font-size: 11px;
-    font-weight: 700;
-    border: 1.5px solid #e50914;
-    color: #e50914;
-    transition: 0.3s;
-}
-
-.btn-small.primary {
+.btn-nav-arrow:hover {
     background: #e50914;
-    color: #fff;
+    border-color: #e50914;
+    box-shadow: 0 0 15px rgba(229, 9, 20, 0.5);
+    color: #ffffff;
 }
+
 
 .promo-section-container {
     padding: 40px;
+    background-color: transparent !important;
 }
 
 .promo-typo-card {
-    background: rgba(255, 255, 255, 0.03);
+    background: rgba(255, 255, 255, 0.02);
     backdrop-filter: blur(15px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 24px;
     width: 100%;
     max-width: 1320px; 
@@ -481,7 +462,7 @@ body {
     min-height: 320px;
     position: relative;
     overflow: hidden;
-    transition: transform 0.3s ease;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.5);
 }
 
 .promo-typo-card::after {
@@ -491,7 +472,7 @@ body {
     left: -50%;
     width: 200%;
     height: 200%;
-    background: radial-gradient(circle, rgba(229, 9, 20, 0.05) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(229, 9, 20, 0.06) 0%, transparent 70%);
     pointer-events: none;
 }
 
@@ -515,10 +496,11 @@ body {
 }
 
 .display-text {
-    font-size: 42px;
+    font-size: 44px;
     font-weight: 900;
     line-height: 1.1;
     margin-bottom: 15px;
+    letter-spacing: -1px;
 }
 
 .display-text .highlight {
@@ -527,7 +509,7 @@ body {
 }
 
 .description-text {
-    color: #aaa;
+    color: #b3b3b3;
     font-size: 16px;
     line-height: 1.6;
 }
@@ -564,38 +546,8 @@ body {
     filter: drop-shadow(0 0 15px #e50914);
 }
 
-.btn-login-small {
-    background: #e50914;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    padding: 8px 25px; 
-    font-size: 12px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    display: inline-block;
-    width: auto; 
-}
-
-.btn-login-small:hover {
-    background: #b20710;
-    transform: scale(1.05);
-}
-
-.custom-input {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    color: #fff;
-    padding: 10px 15px ;
-    border-radius: 6px ;
-    font-size: 14px 
-}
-
 .vip-style {
-    background: linear-gradient(45deg, #1a1a1a, #000) !important;
+    background: linear-gradient(45deg, #1c1a17, #0a0a0a) !important;
     border: 1px solid #c19b33 !important;
 }
 
@@ -611,8 +563,14 @@ body {
 
 .gold-btn {
     background-color: #c19b33 !important;
-    border: none !important;
+    color: #000 !important;
+    font-weight: 800;
     margin-top: 15px;
+}
+
+.gold-btn:hover {
+    background-color: #a38026 !important;
+    box-shadow: 0 0 15px rgba(193, 155, 51, 0.5) !important;
 }
 
 .icon-gold {
@@ -620,153 +578,339 @@ body {
     color: #c19b33;
     margin-bottom: 10px;
     display: block;
+    filter: drop-shadow(0 0 15px rgba(193, 155, 51, 0.3));
 }
+
+
+.movies-section-bg {
+    background-color: #050505;
+    padding: 60px 0;
+}
+
+.section-title-header {
+    font-weight: 700;
+    text-transform: uppercase;
+    margin: 0;
+    border-left: 4px solid #e50914;
+    padding-left: 15px;
+    color: #ffffff;
+}
+
+.age-badge.age-14 {
+    background-color: #ebeb2c;
+    color: #000000;
+}
+
+.age-badge.age-16 {
+    background-color: #e50914;
+    color: #ffffff;
+}
+
+.carousel-controls {
+    display: flex;
+}
+
+.btn-nav-arrow {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-nav-arrow:hover {
+    background: #e50914;
+    border-color: #e50914;
+    box-shadow: 0 0 12px rgba(229, 9, 20, 0.5);
+    color: #ffffff;
+}
+
+.btn-login-small {
+    background: #e50914;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    padding: 12px 35px; 
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.btn-login-small:hover {
+    background: #b20710;
+    transform: scale(1.03);
+    box-shadow: 0 0 15px rgba(229, 9, 20, 0.4);
+}
+
+.custom-input {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: #fff;
+    padding: 12px 18px;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.custom-input:focus {
+    background: rgba(255, 255, 255, 0.07);
+    border-color: #e50914;
+    box-shadow: 0 0 10px rgba(229, 9, 20, 0.2);
+    color: #fff;
+}
+
+.fw-900 { font-weight: 900; }
 
 </style>
 </head>
 <body>
 
-    <header class="header-container" id="mainHeader">
-        <nav class="navbar">
-            <a href="menu.html" class="logo-text">
-                <i class="fas fa-film text-danger me-2"></i>CINE<span>PRO</span>
+
+<header class="header-container" id="mainHeader">
+    <nav class="navbar">
+        <a href="menu.html" class="logo-text">
+            <i class="fas fa-film text-danger me-2"></i>CINE<span>PRO</span>
+        </a>
+
+        <ul class="nav-menu">
+            <li class="nav-item"><a href="menu.html" class="nav-link active">Home</a></li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">Filmes <i class="fas fa-chevron-down"></i></a>
+                <div class="dropdown-content">
+                    <a href="em-breve.html" class="dropdown-item">Em Breve <i class="fas fa-chevron-right"></i></a>
+                    <div style="border-top: 1px solid rgba(255,255,255,0.05); margin: 8px 0;"></div>
+                    <a href="sessoes-vip.html" class="dropdown-item">Sessões VIP <i class="fas fa-star text-warning"></i></a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a href="nossos-cinemas.html" class="nav-link">Cinemas <i class="fas fa-chevron-down"></i></a>
+                <div class="dropdown-content">
+                    <a href="nossos-cinemas.html" class="dropdown-item">São Paulo</a>
+                    <a href="nossos-cinemas.html" class="dropdown-item">Rio de Janeiro</a>
+                </div>
+            </li>
+            <li class="nav-item"><a href="precos.html" class="nav-link">Preços</a></li>
+        </ul>
+
+        <div class="nav-right">
+            <a href="perfil.html" style="text-decoration: none;">
+                <button class="btn-ticket-main">PERFIL</button>
             </a>
-
-            <ul class="nav-menu">
-                <li class="nav-item"><a href="menu.html" class="nav-link active">Home</a></li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">Filmes <i class="fas fa-chevron-down"></i></a>
-                    <div class="dropdown-content">
-                        <a href="em-breve.html" class="dropdown-item">Em Breve <i class="fas fa-chevron-right"></i></a>
-                        <div style="border-top: 1px solid rgba(255,255,255,0.05); margin: 8px 0;"></div>
-                        <a href="sessoes-vip.html" class="dropdown-item">Sessões VIP <i class="fas fa-star text-warning"></i></a>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a href="nossos-cinemas.html" class="nav-link">Cinemas <i class="fas fa-chevron-down"></i></a>
-                    <div class="dropdown-content">
-                        <a href="nossos-cinemas.html" class="dropdown-item">São Paulo</a>
-                        <a href="nossos-cinemas.html" class="dropdown-item">Rio de Janeiro</a>
-                    </div>
-                </li>
-                <li class="nav-item"><a href="precos.html" class="nav-link">Preços</a></li>
-            </ul>
-
-            <div class="nav-right">
-                <a href="perfil.html" style="text-decoration: none;">
-                    <button class="btn-ticket-main">PERFIL</button>
-                </a>
-            </div>
-        </nav>
-    </header>
-
-    <section class="carousel-section">
-        <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
-            
-            <div class="carousel-indicators">
-                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active"></button>
-                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1"></button>
-            </div>
-            <div class="carousel-inner">
-                    <div class="carousel-item active" style="background-image: url('../imagens/mario.jpg');">
-                        <div class="carousel-caption">
-                            <h1>MARIO<br>GALAXY</h1>
-                            <a href="javascript:void(0)" onclick="verificarAcesso('Mario Galaxy')" class="btn-buy-ticket">Ingressos</a>
-                        </div>
-                    </div>
-
-                    <div class="carousel-item" style="background-image: url('../imagens/banner-filme.jpg');">
-                        <div class="carousel-caption">
-                            <h1>ELES VÃO<br>TE MATAR</h1>
-                            <a href="javascript:void(0)" onclick="verificarAcesso('Eles Vao Te Matar')" class="btn-buy-ticket">Ingressos</a>
-                        </div>
-                    </div>
-            </div>
-''
-            <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true" style="width: 20px;"></span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true" style="width: 20px;"></span>
-            </button>
         </div>
-    </section>
+    </nav>
+</header>
 
-<section class="section-padding" style="background-color: #050505;">
+<section class="carousel-section">
+    <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
+        
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active"></button>
+            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1"></button>
+        </div>
+        <div class="carousel-inner">
+                <div class="carousel-item active" style="background-image: url('../imagens/obsession.jpg');">
+                    <div class="carousel-caption">
+                        <h1>OBSESSÃO</h1>
+                        <a href="javascript:void(0)" onclick="verificarAcesso('Obsessao')" class="btn-buy-ticket">Ingressos</a>
+                    </div>
+                </div>
+
+                <div class="carousel-item" style="background-image: url('../imagens/super.jpg');">
+                    <div class="carousel-caption">
+                        <h1>SUPERGIRL</h1>
+                        <a href="javascript:void(0)" onclick="verificarAcesso('Supergirl')" class="btn-buy-ticket">Ingressos</a>
+                    </div>
+                </div>
+        </div>
+
+        <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true" style="width: 20px;"></span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true" style="width: 20px;"></span>
+        </button>
+    </div>
+</section>
+
+<section class="section-padding movies-section-bg">
     <div class="container">
-        <div class="d-flex justify-content-between align-items-end mb-5">
-            <h2 class="fw-bold text-uppercase m-0" style="border-left: 4px solid #e50914; padding-left: 15px; color: white;">
+
+        <div class="d-flex justify-content-between align-items-center mb-5">
+            <h2 class="section-title-header">
                 Filmes Em Cartaz
             </h2>
+
+            <div class="carousel-controls">
+                <button class="btn-nav-arrow me-2" type="button" data-bs-target="#carouselFilmes" data-bs-slide="prev">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="btn-nav-arrow" type="button" data-bs-target="#carouselFilmes" data-bs-slide="next">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
         </div> 
-        
-        <div class="movie-grid">
-            <div class="movie-card-v2">
-                <div class="poster-container">
-                    <span class="age-badge" style="background-color: #ebeb2c;">14</span>
-                    <img src="../imagens/velhos.jpg" alt="Velhos Bandidos">
-                    <div class="card-overlay">
-                        <a href="javascript:void(0)" onclick="verificarAcesso('Velhos Bandidos')" class="btn-buy-ticket">Ingressos</a>
-                    </div>
-                </div>
-                <div class="movie-info-box">
-                    <h3 class="movie-title">Velhos Bandidos</h3>
-                    <div class="movie-meta">
-                        <span class="movie-genre">Ação / Aventura</span>
-                        <span class="movie-rating"><i class="fas fa-star me-1"></i>8.4</span>
-                    </div>
-                </div>
-            </div>
 
-            <div class="movie-card-v2">
-                <div class="poster-container">
-                    <span class="age-badge" style="background-color: #e50914;">16</span>
-                    <img src="../imagens/reminders.jpg" alt="Uma Segunda Chance">
-                    <div class="card-overlay">
-                        <a href="javascript:void(0)" onclick="verificarAcesso('Uma Segunda Chance')" class="btn-buy-ticket">Ingressos</a>
-                    </div>
-                </div>
-                <div class="movie-info-box">
-                    <h3 class="movie-title">Uma Segunda Chance</h3>
-                    <div class="movie-meta">
-                        <span class="movie-genre">Romance / Amor</span>
-                        <span class="movie-rating"><i class="fas fa-star me-1"></i>9.1</span>
-                    </div>
-                </div>
-            </div>
+        <div id="carouselFilmes" class="carousel slide" data-bs-ride="false">
+            <div class="carousel-inner">
 
-            <div class="movie-card-v2">
-                <div class="poster-container">
-                    <span class="age-badge" style="background-color: #e50914;">16</span>
-                    <img src="../imagens/nuremberg.jpg" alt="Nuremberg">
-                    <div class="card-overlay">
-                        <a href="javascript:void(0)" onclick="verificarAcesso('Nuremberg')" class="btn-buy-ticket">Ingressos</a>
-                    </div>
-                </div>
-                <div class="movie-info-box">
-                    <h3 class="movie-title">Nuremberg</h3>
-                    <div class="movie-meta">
-                        <span class="movie-genre">Suspense / Terror</span>
-                        <span class="movie-rating"><i class="fas fa-star me-1"></i>7.8</span>
-                    </div>
-                </div>
-            </div>
+                <div class="carousel-item active">
+                    <div class="movie-grid">
+                        
+                        <div class="movie-card-v2">
+                            <div class="poster-container">
+                                <span class="age-badge age-16">16</span>
+                                <img src="../imagens/panico.jpg" alt="Panico 7">
+                                <div class="card-overlay">
+                                    <a href="javascript:void(0)" onclick="verificarAcesso('Panico 7')" class="btn-buy-ticket">Ingressos</a>
+                                </div>
+                            </div>
+                            <div class="movie-info-box">
+                                <h3 class="movie-title">Pânico 7</h3>
+                                <div class="movie-meta">
+                                    <span class="movie-genre">Terror / Suspense</span>
+                                    <span class="movie-rating"><i class="fas fa-star me-1"></i>8.4</span>
+                                </div>
+                            </div>
+                        </div>
 
-            <div class="movie-card-v2">
-                <div class="poster-container">
-                    <span class="age-badge" style="background-color: #e50914;">16</span>
-                    <img src="../imagens/mumia.jpg" alt="Maldição da Múmia">
-                    <div class="card-overlay">
-                        <a href="javascript:void(0)" onclick="verificarAcesso('Maldição da Múmia')" class="btn-buy-ticket">Ingressos</a>
+                        <div class="movie-card-v2">
+                            <div class="poster-container">
+                                <span class="age-badge age-12">12</span>
+                                <img src="../imagens/devoradores.jpg" alt="Devoradores de Estrela">
+                                <div class="card-overlay">
+                                    <a href="javascript:void(0)" onclick="verificarAcesso('Devoradores de Estrelas')" class="btn-buy-ticket">Ingressos</a>
+                                </div>
+                            </div>
+                            <div class="movie-info-box">
+                                <h3 class="movie-title">Devoradores de Estrela</h3>
+                                <div class="movie-meta">
+                                    <span class="movie-genre">Ficção Científica / Aventura</span>
+                                    <span class="movie-rating"><i class="fas fa-star me-1"></i>9.1</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="movie-card-v2">
+                            <div class="poster-container">
+                                <span class="age-badge age-16">16</span>
+                                <img src="../imagens/backrooms.jpg" alt="Backrooms">
+                                <div class="card-overlay">
+                                    <a href="javascript:void(0)" onclick="verificarAcesso('Backrooms')" class="btn-buy-ticket">Ingressos</a>
+                                </div>
+                            </div>
+                            <div class="movie-info-box">
+                                <h3 class="movie-title">Backrooms</h3>
+                                <div class="movie-meta">
+                                    <span class="movie-genre">Suspense / Terror</span>
+                                    <span class="movie-rating"><i class="fas fa-star me-1"></i>7.8</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="movie-card-v2">
+                            <div class="poster-container">
+                                <span class="age-badge age-12">12</span>
+                                <img src="../imagens/diad.jpg" alt="Dia D">
+                                <div class="card-overlay">
+                                    <a href="javascript:void(0)" onclick="verificarAcesso('Dia D')" class="btn-buy-ticket">Ingressos</a>
+                                </div>
+                            </div>
+                            <div class="movie-info-box">
+                                <h3 class="movie-title">Dia D</h3>
+                                <div class="movie-meta">
+                                    <span class="movie-genre">Ficçõa Científica / Suspense</span>
+                                    <span class="movie-rating"><i class="fas fa-star me-1"></i>6.5</span>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
-                <div class="movie-info-box">
-                    <h3 class="movie-title">Maldição da Múmia</h3>
-                    <div class="movie-meta">
-                        <span class="movie-genre">Terror / Aventura</span>
-                        <span class="movie-rating"><i class="fas fa-star me-1"></i>6.5</span>
+
+                <div class="carousel-item">
+                    <div class="movie-grid">
+                        
+                        <div class="movie-card-v2">
+                            <div class="poster-container">
+                                <span class="age-badge age-12">12</span>
+                                <img src="../imagens/circodigital.jpg" alt="Circo Digital">
+                                <div class="card-overlay">
+                                    <a href="javascript:void(0)" onclick="verificarAcesso('Circo Digital')" class="btn-buy-ticket">Ingressos</a>
+                                </div>
+                            </div>
+                            <div class="movie-info-box">
+                                <h3 class="movie-title">Circo Digital</h3>
+                                <div class="movie-meta">
+                                    <span class="movie-genre">Drama / Ficção Científica</span>
+                                    <span class="movie-rating"><i class="fas fa-star me-1"></i>8.4</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="movie-card-v2">
+                            <div class="poster-container">
+                                <span class="age-badge age-L">L</span>
+                                <img src="../imagens/toystore.jpg" alt="Toy Store 5">
+                                <div class="card-overlay">
+                                    <a href="javascript:void(0)" onclick="verificarAcesso('Toy Store 5')" class="btn-buy-ticket">Ingressos</a>
+                                </div>
+                            </div>
+                            <div class="movie-info-box">
+                                <h3 class="movie-title">Toy Store 5</h3>
+                                <div class="movie-meta">
+                                    <span class="movie-genre">Animação / Comédia</span>
+                                    <span class="movie-rating"><i class="fas fa-star me-1"></i>9.1</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="movie-card-v2">
+                            <div class="poster-container">
+                                <span class="age-badge age-12">12</span>
+                                <img src="../imagens/diabo.jpg" alt="Diabo Veste Prada">
+                                <div class="card-overlay">
+                                    <a href="javascript:void(0)" onclick="verificarAcesso('Diabo Veste Prada')" class="btn-buy-ticket">Ingressos</a>
+                                </div>
+                            </div>
+                            <div class="movie-info-box">
+                                <h3 class="movie-title">Diabo Veste Prada</h3>
+                                <div class="movie-meta">
+                                    <span class="movie-genre">Drama / Comédia</span>
+                                    <span class="movie-rating"><i class="fas fa-star me-1"></i>7.8</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="movie-card-v2">
+                            <div class="poster-container">
+                                <span class="age-badge age-12">12</span>
+                                <img src="../imagens/michael.jpg" alt="Michael">
+                                <div class="card-overlay">
+                                    <a href="javascript:void(0)" onclick="verificarAcesso('Michael')" class="btn-buy-ticket">Ingressos</a>
+                                </div>
+                            </div>
+                            <div class="movie-info-box">
+                                <h3 class="movie-title">Michael</h3>
+                                <div class="movie-meta">
+                                    <span class="movie-genre">Biografia / Drama</span>
+                                    <span class="movie-rating"><i class="fas fa-star me-1"></i>6.5</span>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
+
             </div>
         </div>
     </div>
@@ -859,10 +1003,5 @@ body {
     <script src="js/menuView.js"></script>
     <script src="js/contatoView.js"></script>
     
-</body>
-</html>
-</body>
-</html>
-
 </body>
 </html>

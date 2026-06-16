@@ -6,16 +6,19 @@ const IngressoController = {
         const { usuario, filme, assentos } = req.body;
         try {
             const user = await UsuarioModel.buscarIdPorNome(usuario);
-            if (!user) return res.status(404).send("Usuário não encontrado");
+            if (!user) {
+                return res.status(404).json({ error: "Usuário não encontrado" });
+            }
             
             const listaAssentos = assentos.split(', ');
             for (let umAssento of listaAssentos) {
                 await IngressoModel.salvarIngresso(user.id, filme, umAssento);
             }
-            res.status(200).send("Ingressos salvos com sucesso!");
+
+            res.status(200).json({ message: "Ingressos salvos com sucesso!" });
         } catch (err) {
             console.error(err);
-            res.status(500).send("Erro ao salvar no banco.");
+            res.status(500).json({ error: "Erro ao salvar no banco.", message: err.message });
         }
     },
 
@@ -26,7 +29,7 @@ const IngressoController = {
             res.json(ingressos);
         } catch (err) {
             console.error(err);
-            res.status(500).send("Erro ao buscar ingressos");
+            res.status(500).json({ error: "Erro ao buscar ingressos." });
         }
     },
 
@@ -37,7 +40,7 @@ const IngressoController = {
             res.json(assentos);
         } catch (err) {
             console.error(err);
-            res.status(500).send("Erro ao buscar assentos ocupados");
+            res.status(500).json({ error: "Erro ao buscar assentos ocupados." });
         }
     }
 };

@@ -1,13 +1,70 @@
-var precoPorAssento = 42.00;
+var precoPorAssento = 36.00; 
 var filmeAtual = "";
 
 window.onload = async function() {
     var parametros = new URLSearchParams(window.location.search);
     filmeAtual = parametros.get('filme');
-    
+    var salaAtual = parametros.get('sala');
+
     document.getElementById('displayFilme').innerText = filmeAtual;
     document.getElementById('displayHora').innerText = parametros.get('hora');
-    document.getElementById('displaySala').innerText = parametros.get('sala');
+    document.getElementById('displaySala').innerText = salaAtual;
+
+    if (salaAtual && salaAtual.toUpperCase().includes('VIP')) {
+        precoPorAssento = 76.00;
+
+        document.body.classList.add('vip-theme');
+
+        var elementoTela = document.getElementById('barraTela') || document.querySelector('.screen') || document.querySelector('.tela');
+        if (elementoTela) {
+            elementoTela.style.background = '#c19b33';
+            elementoTela.style.backgroundColor = '#c19b33';
+            elementoTela.style.boxShadow = '0 4px 20px rgba(193, 155, 51, 0.7)';
+        }
+
+        var badgeSala = document.getElementById('displaySala');
+        if (badgeSala) {
+            badgeSala.style.backgroundColor = '#c19b33';
+            badgeSala.style.color = '#050505';
+            badgeSala.style.padding = '4px 8px';
+            badgeSala.style.borderRadius = '4px';
+        }
+
+        var badgeHora = document.getElementById('displayHora');
+        if (badgeHora && badgeHora.parentElement) {
+            badgeHora.parentElement.style.borderColor = '#c19b33';
+            badgeHora.parentElement.style.color = '#c19b33';
+            var iconeRelogio = badgeHora.parentElement.querySelector('i');
+            if (iconeRelogio) {
+                iconeRelogio.style.color = '#c19b33';
+            }
+        }
+
+        var contadorTexto = document.getElementById('seatCount');
+        if (contadorTexto) {
+            contadorTexto.style.color = '#c19b33';
+        }
+
+        var precoTexto = document.getElementById('totalPrice');
+        if (precoTexto) {
+            precoTexto.style.color = '#ffffff';
+            precoTexto.style.textShadow = 'none';
+        }
+
+        var botaoConfirmar = document.querySelector('.btn-finalizar') || document.querySelector('.btn-confirmar') || document.querySelector('button[onclick*="finalizarReserva"]');
+        if (botaoConfirmar) {
+            botaoConfirmar.style.backgroundColor = '#c19b33';
+            botaoConfirmar.style.color = '#050505';
+            botaoConfirmar.style.border = 'none';
+            botaoConfirmar.style.fontWeight = '800';
+
+            botaoConfirmar.onmouseenter = function() { this.style.backgroundColor = '#ffffff'; };
+            botaoConfirmar.onmouseleave = function() { this.style.backgroundColor = '#c19b33'; };
+        }
+    } else {
+        precoPorAssento = 36.00;
+        document.body.classList.remove('vip-theme');
+    }
     
     await carregarEMapearAssentos();
 };
@@ -17,7 +74,6 @@ async function carregarEMapearAssentos() {
     try {
         var response = await fetch('/assentos-ocupados?filme=' + encodeURIComponent(filmeAtual));
         if (response.ok) {
-    
             var dadosBrutos = await response.json(); 
             
             assentosOcupados = dadosBrutos.join(',').split(',').map(function(a) {
@@ -74,7 +130,6 @@ function clicarNoAssento(elemento) {
 function finalizarReserva() {
     var selecionados = document.querySelectorAll('.seat.selected');
     if (selecionados.length === 0) {
-        alert("Selecione pelo menos um assento!");
         return;
     }
 
@@ -89,7 +144,7 @@ function finalizarReserva() {
 
     var destino = "ingressos.html?filme=" + encodeURIComponent(filme) + 
                   "&hora=" + encodeURIComponent(hora) + 
-                  "&sala=" + encodeURIComponent(sala) + 
+                  "&sala=" + encodeURIComponent(sala) +  
                   "&assentos=" + encodeURIComponent(assentosArray.join(','));
                   
     window.location.href = destino;

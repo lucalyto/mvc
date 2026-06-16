@@ -5,8 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sessões VIP - CinePro Ultra</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
     
-    <style>
+<style>
+
 * {
     margin: 0;
     padding: 0;
@@ -15,234 +17,316 @@
 }
 
 body {
-    background-color: #050505;
+    background: radial-gradient(circle at 50% 35%, #141519 0%, #050505 75%);
     color: #ffffff;
     line-height: 1.6;
+    overflow-x: hidden;
+    background-attachment: fixed;
+    padding-bottom: 60px;
 }
 
 .vip-hero {
-    height: 500px;
-    background-position: center;
+    height: 460px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
-    border-bottom: 2px solid #e50914;
+    background: linear-gradient(to bottom, rgba(20, 21, 25, 0.2) 0%, rgba(5, 5, 5, 0.8) 100%);
+    padding: 0 20px;
+    position: relative;
+}
+
+.vip-hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 150px;
+    height: 2px;
+    background: #c19b33;
+    box-shadow: 0 0 15px #c19b33;
 }
 
 .vip-hero i {
-    color: #e50914;
-    font-size: 50px;
-    margin-bottom: 20px;
-    filter: drop-shadow(0 0 15px rgba(229, 9, 20, 0.5));
+    color: #c19b33;
+    font-size: 45px;
+    margin-bottom: 15px;
+    filter: drop-shadow(0 0 15px rgba(193, 155, 51, 0.4));
 }
 
 .vip-hero h1 {
-    font-size: 50px;
+    font-size: 52px;
+    font-weight: 900;
     text-transform: uppercase;
-    letter-spacing: 5px;
-    margin-bottom: 10px;
+    letter-spacing: -1px;
+    margin-bottom: 12px;
 }
 
 .vip-hero h1 span { 
-    color: #e50914; 
+    color: #c19b33; 
+    text-shadow: 0 0 20px rgba(193, 155, 51, 0.3);
 }
 
 .vip-hero p {
-    color: #888;
-    max-width: 600px;
-    font-size: 18px;
+    color: #b3b3b3;
+    max-width: 580px;
+    font-size: 16px;
+    font-weight: 400;
 }
 
 .vip-features {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
+    gap: 25px;
     max-width: 1200px;
-    margin: -50px auto 80px;
+    margin: -30px auto 80px;
     padding: 0 20px;
+    position: relative;
+    z-index: 10;
 }
 
 .feature-card {
-    background: #0f0f0f;
-    padding: 40px;
-    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(15px);
+    padding: 40px 30px;
+    border-radius: 20px;
     text-align: center;
-    border: 1px solid #1a1a1a;
-    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
 .feature-card:hover {
-    border-color: #e50914;
-    transform: translateY(-10px);
-    background: #111;
+    border-color: #c19b33;
+    transform: translateY(-8px);
+    background: rgba(193, 155, 51, 0.03);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
 }
 
 .feature-card i {
-    font-size: 35px;
-    color: #e50914;
+    font-size: 32px;
+    color: #c19b33;
     margin-bottom: 20px;
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
 }
 
 .feature-card h3 {
-    margin-bottom: 15px;
+    margin-bottom: 12px;
     text-transform: uppercase;
-    font-size: 18px;
+    font-size: 17px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
 }
 
 .feature-card p {
-    color: #666;
-    font-size: 14px;
+    color: #999;
+    font-size: 13.5px;
+    line-height: 1.5;
 }
 
 .gourmet-section {
     max-width: 1200px;
-    margin: 0 auto 100px;
+    margin: 0 auto 60px;
     padding: 0 20px;
 }
 
 .section-title {
     text-align: center;
-    margin-bottom: 50px;
+    margin-bottom: 45px;
 }
 
 .section-title h2 {
     font-size: 32px;
+    font-weight: 900;
     text-transform: uppercase;
+    letter-spacing: -0.5px;
 }
 
-.section-title .underline {
-    width: 80px;
-    height: 3px;
-    background: #e50914;
-    margin: 15px auto;
+.section-title h2 span {
+    color: #c19b33;
 }
 
 .gourmet-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 40px;
-    background: #0a0a0a;
-    padding: 40px;
-    border-radius: 20px;
-    border: 1px solid #1a1a1a;
+    gap: 50px;
+    background: rgba(255, 255, 255, 0.01);
+    backdrop-filter: blur(10px);
+    padding: 50px;
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+}
+
+.column-title {
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #c19b33;
+    margin-bottom: 25px;
+    font-weight: 700;
+    border-left: 3px solid #c19b33;
+    padding-left: 10px;
 }
 
 .gourmet-item {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px dashed #333;
-    padding: 15px 0;
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+    padding: 18px 0;
+    transition: all 0.3s ease;
+}
+
+.gourmet-item:hover {
+    border-bottom-color: rgba(193, 155, 51, 0.4);
 }
 
 .gourmet-item .info h4 { 
     color: #fff; 
-    font-size: 18px; 
+    font-size: 16px; 
+    font-weight: 700;
+    margin-bottom: 4px;
 }
+
 .gourmet-item .info p { 
-    color: #666; 
+    color: #888; 
     font-size: 13px; 
 }
+
 .gourmet-item .price { 
-    color: #e50914; 
+    color: #c19b33; 
     font-weight: 800; 
     font-size: 18px; 
+    padding-left: 15px;
 }
 
 .btn-vip-booking {
     display: block;
     width: fit-content;
-    margin: 50px auto;
-    background: #e50914;
-    color: white;
-    padding: 20px 50px;
+    margin: 60px auto 20px;
+    background: #c19b33;
+    color: #050505;
+    padding: 18px 45px;
     border-radius: 50px;
     text-decoration: none;
     font-weight: 900;
     text-transform: uppercase;
-    letter-spacing: 2px;
-    transition: all 0.4s ease;
-    box-shadow: 0 10px 30px rgba(229, 9, 20, 0.3);
+    font-size: 13px;
+    letter-spacing: 1.5px;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    box-shadow: 0 10px 25px rgba(193, 155, 51, 0.2);
+    border: none;
 }
 
 .btn-vip-booking:hover {
     transform: scale(1.05);
-    background: #ff0f1a;
-    box-shadow: 0 15px 40px rgba(229, 9, 20, 0.5);
+    background: #e5b33c;
+    color: #050505;
+    box-shadow: 0 15px 35px rgba(193, 155, 51, 0.4);
 }
 
-    </style>
+@media (max-width: 768px) {
+    .gourmet-grid {
+        grid-template-columns: 1fr;
+        padding: 30px;
+        gap: 35px;
+    }
+    .vip-hero h1 { font-size: 38px; }
+}
+</style>
 </head>
 <body>
 
     <header class="vip-hero">
-        <i class="fas fa-star"></i>
+        <i class="fas fa-crown"></i>
         <h1>Sessões <span>VIP</span></h1>
-        <p>A exclusividade de um cinema particular com o serviço de um restaurante cinco estrelas.</p>
+        <p>A exclusividade de um cinema particular combinado com o requinte e a sofisticação de um menu internacional.</p>
     </header>
 
     <div class="vip-features">
         <div class="feature-card">
             <i class="fas fa-couch"></i>
             <h3>Poltronas Reclináveis</h3>
-            <p>Totalmente eletrônicas, com descanso para os pés e couro legítimo para o máximo conforto.</p>
+            <p>Poltronas 100% eletrônicas em couro legítimo, com comandos individuais de inclinação e descanso de pés.</p>
         </div>
         <div class="feature-card">
             <i class="fas fa-concierge-bell"></i>
-            <h3>Serviço de Garçom</h3>
-            <p>Peça seu menu gourmet diretamente da sua poltrona através de um tablet exclusivo.</p>
+            <h3>Serviço de Lounge & Sala</h3>
+            <p>Faça seus pedidos pelo tablet integrado à poltrona e receba tudo de forma discreta durante a exibição.</p>
         </div>
         <div class="feature-card">
             <i class="fas fa-wine-glass-alt"></i>
-            <h3>Bebidas Alcóolicas</h3>
-            <p>Acesso a bebidas para maiores de 18 anos.</p>
+            <h3>Carta de Bebidas</h3>
+            <p>Drinks exclusivos, vinhos selecionados e cervejas premium para complementar a sua sessão.</p>
         </div>
     </div>
 
     <section class="gourmet-section">
         <div class="section-title">
             <h2>Menu <span>Gourmet</span></h2>
-            <div class="underline"></div>
         </div>
 
         <div class="gourmet-grid">
             <div class="gourmet-column">
+                <h3 class="column-title">Snacks & Sobremesas</h3>
+                
                 <div class="gourmet-item">
                     <div class="info">
-                        <h4>Pipoca Trufada</h4>
-                        <p>Com azeite de trufas.</p>
+                        <h4>Pipoca Trufada Cristal</h4>
+                        <p>Pipoca artesanal com azeite de trufas brancas e flor de sal.</p>
+                    </div>
+                    <div class="price">R$ 45</div>
+                </div>
+                
+                <div class="gourmet-item">
+                    <div class="info">
+                        <h4>Mini Hamburgueres Artesanais</h4>
+                        <p>Dupla de sliders com blend Black Angus, queijo cheddar e brioche.</p>
+                    </div>
+                    <div class="price">R$ 48</div>
+                </div>
+
+                <div class="gourmet-item">
+                    <div class="info">
+                        <h4>Petit Gâteau Noir</h4>
+                        <p>Chocolate Belga 70% com gelato de baunilha de Madagascar.</p>
+                    </div>
+                    <div class="price">R$ 38</div>
+                </div>
+            </div>
+
+            <div class="gourmet-column">
+                <h3 class="column-title">Bebidas & Cocktails</h3>
+                
+                <div class="gourmet-item">
+                    <div class="info">
+                        <h4>Gin Tônica Premium</h4>
+                        <p>Gin importado, infusão de zimbro, fatias de pepino e tônica botânica.</p>
                     </div>
                     <div class="price">R$ 42</div>
                 </div>
+                
                 <div class="gourmet-item">
                     <div class="info">
-                        <h4>Hot Dog</h4>
-                        <p>Molhos especiais da casa.</p>
+                        <h4>Cesta de Cervejas Especiais</h4>
+                        <p>Long neck premium servida no balde de gelo estruturado.</p>
                     </div>
-                    <div class="price">R$ 28</div>
+                    <div class="price">R$ 26</div>
                 </div>
-            </div>
-            <div class="gourmet-column">
+
                 <div class="gourmet-item">
                     <div class="info">
-                        <h4>Petit Gâteau</h4>
-                        <p>Chocolate 70% com sorvete de baunilha.</p>
+                        <h4>Soda Italiana de Frutas Vermelhas</h4>
+                        <p>Opção refrescante sem álcool com xarope artesanal e água gaseificada.</p>
                     </div>
-                    <div class="price">R$ 35</div>
-                </div>
-                <div class="gourmet-item">
-                    <div class="info">
-                        <h4>Gin</h4>
-                        <p>Gin premium.</p>
-                    </div>
-                    <div class="price">R$ 45</div>
+                    <div class="price">R$ 22</div>
                 </div>
             </div>
         </div>
 
-        <a href="precos.html" class="btn-vip-booking">Ver Preço VIP</a>
+        <a href="precos.html" class="btn-vip-booking">Consultar Ingresso VIP</a>
     </section>
 </body>
 </html>

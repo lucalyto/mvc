@@ -20,7 +20,6 @@ function verificarAcesso(nomeFilme) {
         window.location.href = urlDestino
     } else {
         localStorage.setItem('urlPretendida', urlDestino)
-        alert('Inicie a sessão para comprar os ingressos.')
         window.location.href = '/login.html'
     }
 }

@@ -7,10 +7,10 @@ const AuthController = {
         try {
             const senhaCriptografada = await bcrypt.hash(senha, 10)
             await UsuarioModel.cadastrar(usuario, senhaCriptografada)
-            res.send("<script>alert('Utilizador registado com sucesso!'); window.location.href='/login.html'</script>")
+            res.redirect('/login.html');
         } catch (err) {
             console.error(err);
-            res.status(500).send("Erro ao cadastrar: " + err.message)
+            res.status(500).json({ error: "Erro ao cadastrar", message: err.message });
         }
     },
 
@@ -33,14 +33,14 @@ const AuthController = {
                         </script>
                     `);
                 } else {
-                    res.send("<script>alert('Usuário ou senha incorretos'); window.location.href='/login.html'</script>")
+                    res.status(401).redirect('/login.html?error=invalid_credentials');
                 }
             } else {
-                res.send("<script>alert('Usuário ou senha incorretos'); window.location.href='/login.html'</script>")
+                res.status(401).redirect('/login.html?error=user_not_found');
             }
         } catch (err) {
             console.error(err);
-            res.status(500).send("Erro no servidor");
+            res.status(500).json({ error: "Erro interno no servidor" });
         }
     },
 
@@ -48,7 +48,7 @@ const AuthController = {
         const solicitante = req.query.solicitante; 
 
         if (solicitante !== 'admin') {
-            return res.status(403).send("Acesso negado.");
+            return res.status(403).json({ error: "Acesso negado. Permissão insuficiente." });
         }
 
         try {
@@ -56,7 +56,7 @@ const AuthController = {
             res.json(lista);
         } catch (err) {
             console.error(err);
-            res.status(500).send("Erro ao buscar utilizadores.");
+            res.status(500).json({ error: "Erro ao buscar utilizadores." });
         }
     }
 };

@@ -8,24 +8,30 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
-    <style>
-* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
+<style>
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+    font-family: 'Plus Jakarta Sans', sans-serif; 
+}
 
 body { 
-    background: #000000;
+    background: radial-gradient(circle at 50% 35%, #141519 0%, #050505 75%);
     color: #fff; 
     min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center; 
     padding: 20px;
+    background-attachment: fixed;
 }
 
 .booking-card {
-    background: rgba(15, 15, 15, 0.8);
+    background: rgba(15, 15, 15, 0.7);
     backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 12px; 
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px; 
     width: 100%;
     max-width: 550px;
     min-height: 550px; 
@@ -44,6 +50,7 @@ body {
     letter-spacing: 4px;
     margin-bottom: 8px;
     display: block;
+    transition: color 0.3s ease;
 }
 
 h2 { 
@@ -79,15 +86,22 @@ h2 {
 .info-value i { 
     color: #e50914; 
     margin-right: 8px; 
+    transition: color 0.3s ease;
 }
 
 .summary-box {
-    background: rgba(229, 9, 20, 0.1);
+    background: rgba(229, 9, 20, 0.08);
     border-bottom: 2px solid #e50914;
     padding: 20px;
     border-radius: 8px;
     margin-top: 20px;
     text-align: left;
+    transition: all 0.3s ease;
+}
+
+.summary-box.vip-summary {
+    background: rgba(193, 155, 51, 0.08);
+    border-bottom-color: #c19b33;
 }
 
 .btn-pay {
@@ -104,8 +118,13 @@ h2 {
     transition: 0.3s;
 }
 
+.btn-pay.btn-vip-pay {
+    background: #c19b33;
+    color: #050505;
+}
+
 .btn-pay:hover {
-    background: #b20710;
+    filter: brightness(1.2);
     transform: scale(1.02);
 }
 
@@ -121,13 +140,13 @@ h2 {
 .back-link:hover { 
     color: #fff; 
 }
-    </style>
+</style>
 </head>
 <body>
 
     <div class="booking-card text-center">
         <div>
-            <span class="step-title">Check-out</span>
+            <span class="step-title" id="checkoutStep">Check-out</span>
             <h2>Finalizar Compra</h2>
         </div>
 
@@ -153,15 +172,18 @@ h2 {
 
         <div class="info-group">
             <span class="info-label">Assentos</span>
-            <div class="info-value"><i class="fas fa-couch"></i> <span id="resumoAssentos">--</span></div>
+            <div class="info-value">
+                <i class="fas fa-couch" id="iconAssento"></i> 
+                <span id="resumoAssentos">--</span>
+            </div>
         </div>
 
-        <div class="summary-box">
+        <div class="summary-box" id="summaryBox">
             <p class="mb-0 small text-muted fw-bold">TOTAL A PAGAR</p>
             <h3 class="mb-0 fw-bold" id="resumoTotal">R$ 0,00</h3>
         </div>
 
-        <button class="btn-pay" onclick="pagar()">Confirmar Pagamento</button>
+        <button class="btn-pay" id="btnPay" onclick="pagar()">Confirmar Pagamento</button>
         
         <a href="javascript:history.back()" class="back-link">
             <i class="fas fa-arrow-left me-1"></i> ALTERAR ASSENTOS
