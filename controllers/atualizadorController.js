@@ -38,7 +38,7 @@ const AuthController = {
             } else {
                 res.status(401).redirect('/login.html?error=user_not_found');
             }
-        } catch (err) {
+        } catch (err) { 
             console.error(err);
             res.status(500).json({ error: "Erro interno no servidor" });
         }

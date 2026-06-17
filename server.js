@@ -23,5 +23,5 @@ app.use('/', rotasCinema)
 
 const PORT = 3000 
 app.listen(PORT, () => {
-    console.log('Servidor rodando em http://localhost:' + PORT)
+    console.log('Servidor rodando em https://mvc-3rqy.onrender.com/usuarios' + PORT)
 })
