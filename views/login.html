@@ -167,16 +167,14 @@ input::placeholder {
                 const urlPretendida = localStorage.getItem('urlPretendida');
 
                 if (dados.tipo_usuario === 'admin') {
-                    window.location.href = "/views/admin.html";
+                    window.location.href = "admin.html";
                 } else if (urlPretendida) {
                     localStorage.removeItem('urlPretendida');
-                    if (urlPretendida.startsWith('views/')) {
-                        window.location.href = "/" + urlPretendida;
-                    } else {
-                        window.location.href = "/views/" + urlPretendida;
-                    }
+
+                    const urlLimpa = urlPretendida.replace('views/', '').replace(/^\//, '');
+                    window.location.href = urlLimpa;
                 } else {
-                    window.location.href = "/views/menu.html";
+                    window.location.href = "menu.html";
                 }
             } else {
                 alert('Utilizador ou senha incorretos.');

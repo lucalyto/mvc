@@ -10,7 +10,7 @@ async function carregarPerfil() {
     const logado = localStorage.getItem('usuarioLogado')
 
     if (logado !== 'true' || !usuario) {
-        window.location.href = '../login.html'
+        window.location.href = 'login.html'
         return
     }
 
@@ -55,5 +55,5 @@ async function carregarPerfil() {
 function fazerLogout() {
     localStorage.removeItem('usuarioLogado')
     localStorage.removeItem('nomeUsuario')
-    window.location.href = './menu.html'
+    window.location.href = 'menu.html'
 }

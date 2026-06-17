@@ -20,6 +20,6 @@ function verificarAcesso(nomeFilme) {
         window.location.href = urlDestino
     } else {
         localStorage.setItem('urlPretendida', urlDestino)
-        window.location.href = '../login.html'
+        window.location.href = '/login.html'
     }
 }
