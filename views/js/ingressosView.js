@@ -1,10 +1,11 @@
+const baseUrl = 'https://mvc-3rqy.onrender.com/'
 window.onload = function() {
     const urlParams = new URLSearchParams(window.location.search);
     const filme = urlParams.get('filme');
     const hora = urlParams.get('hora');
     const sala = urlParams.get('sala');
     const assentos = urlParams.get('assentos');
-    const baseUrl = 'https://mvc-3rqy.onrender.com/'
+    
 
     if (filme) document.getElementById('resumoFilme').innerText = filme;
     if (hora) document.getElementById('resumoHora').innerText = hora;
