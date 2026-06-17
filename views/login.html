@@ -164,10 +164,15 @@ input::placeholder {
                 localStorage.setItem('nomeUsuario', dados.usuario);
                 localStorage.setItem('tipoUsuario', dados.tipo_usuario);
 
+                const urlPretendida = localStorage.getItem('urlPretendida');
+
                 if (dados.tipo_usuario === 'admin') {
-                    window.location.href = "admin.html";
+                    window.location.href = "views/admin.html"; 
+                } else if (urlPretendida) {
+                    localStorage.removeItem('urlPretendida');
+                    window.location.href = `views/${urlPretendida}`;
                 } else {
-                    window.location.href = "menu.html";
+                    window.location.href = "views/menu.html";
                 }
             } else {
                 alert('Utilizador ou senha incorretos.');
