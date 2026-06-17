@@ -1,5 +1,6 @@
 var precoPorAssento = 36.00; 
 var filmeAtual = "";
+const baseUrl = 'https://mvc-3rqy.onrender.com';
 
 window.onload = async function() {
     var parametros = new URLSearchParams(window.location.search);
@@ -72,7 +73,8 @@ window.onload = async function() {
 async function carregarEMapearAssentos() {
     var assentosOcupados = [];
     try {
-        var response = await fetch('/assentos-ocupados?filme=' + encodeURIComponent(filmeAtual));
+        // CORRIGIDO: Agora buscando diretamente da API do Render usando a baseUrl
+        var response = await fetch(`${baseUrl}/assentos-ocupados?filme=` + encodeURIComponent(filmeAtual));
         if (response.ok) {
             var dadosBrutos = await response.json(); 
             
@@ -142,7 +144,7 @@ function finalizarReserva() {
     var hora = document.getElementById('displayHora').innerText;
     var sala = document.getElementById('displaySala').innerText;
 
-    var destino = "ingressos.html?filme=" + encodeURIComponent(filme) + 
+    var destino = "./ingressos.html?filme=" + encodeURIComponent(filme) + 
                   "&hora=" + encodeURIComponent(hora) + 
                   "&sala=" + encodeURIComponent(sala) +  
                   "&assentos=" + encodeURIComponent(assentosArray.join(','));

@@ -46,7 +46,6 @@ async function pagar() {
     };
 
     if (!dadosReserva.usuario || !dadosReserva.filme || !dadosReserva.assentos) {
-        alert("Erro: Informações da reserva ausentes no navegador.");
         return;
     }
 
@@ -58,14 +57,11 @@ async function pagar() {
         });
 
         if (response.ok) {
-            alert("Pagamento confirmado com sucesso!");
             window.location.href = "./menu.html";
         } else {
             const erroMsg = await response.text();
-            alert("Erro no servidor ao finalizar reserva: " + erroMsg);
         }
     } catch (err) {
         console.error(err);
-        alert("Erro ao conectar com o servidor de pagamento.");
     }
 }
