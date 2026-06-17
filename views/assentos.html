@@ -212,6 +212,86 @@ body.vip-theme .seat.selected {
     border-color: #c19b33;
     color: #050505;
 }
+
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+        align-items: flex-start;
+    }
+
+    .cinema-container {
+        padding: 20px 15px;
+        border-radius: 20px;
+    }
+
+    .btn-back {
+        position: static;
+        display: block;
+        text-align: left;
+        margin-bottom: 20px;
+    }
+
+    .movie-header h2 {
+        font-size: 18px;
+    }
+
+    .session-info {
+        gap: 10px;
+    }
+
+    .info-tag {
+        font-size: 11px;
+    }
+
+    .screen-container {
+        margin-bottom: 35px;
+    }
+
+    .seats-grid {
+        gap: 6px;
+        overflow-x: auto;
+        padding-bottom: 15px;
+        width: 100%;
+        justify-content: flex-start;
+    }
+
+    .row {
+        gap: 6px;
+    }
+
+    .seat {
+        width: 30px;
+        height: 30px;
+        font-size: 8px;
+        color: #fff;
+    }
+
+    .seat.occupied::after {
+        font-size: 10px;
+    }
+
+    .legend {
+        gap: 15px;
+        padding: 10px;
+        flex-wrap: wrap;
+    }
+
+    .legend-item {
+        font-size: 11px;
+    }
+
+    .booking-summary {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+        padding-top: 20px;
+    }
+
+    .btn-confirm {
+        width: 100%;
+        padding: 14px;
+    }
+}
     </style>
 </head>
 <body>

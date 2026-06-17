@@ -169,6 +169,51 @@ body {
     border-top: 1px solid #1a1a1a;
 }
 
+@media (max-width: 768px) {
+    .promo-header {
+        padding: 80px 20px 40px;
+    }
+
+    .promo-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 0 15px;
+        margin-bottom: 60px;
+    }
+
+    .promo-card::before, 
+    .promo-card::after {
+        display: none; 
+    }
+
+    .promo-img {
+        height: 160px;
+    }
+
+    .promo-body {
+        padding: 20px;
+    }
+
+    .promo-body h3 {
+        font-size: 20px;
+    }
+
+    .rules-section {
+        padding: 0 15px;
+        margin-bottom: 60px;
+    }
+
+    .rule-header {
+        padding: 15px;
+        font-size: 15px;
+    }
+
+    .rule-item.active .rule-content {
+        padding: 15px;
+        max-height: 300px;
+    }
+}
+
     </style>
 </head>
 <body>
