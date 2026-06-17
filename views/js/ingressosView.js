@@ -1,4 +1,4 @@
-const baseUrl = 'https://mvc-3rqy.onrender.com/'
+const baseUrl = 'https://mvc-3rqy.onrender.com';
 window.onload = function() {
     const urlParams = new URLSearchParams(window.location.search);
     const filme = urlParams.get('filme');
@@ -36,32 +36,32 @@ window.onload = function() {
     }
 };
 
-async function pagar() {
-    const urlParams = new URLSearchParams(window.location.search);
+    async function pagar() {
+        const urlParams = new URLSearchParams(window.location.search);
 
-    const dadosReserva = {
-        usuario: localStorage.getItem('nomeUsuario'),
-        filme: urlParams.get('filme'),
-        assentos: urlParams.get('assentos')
-    };
+        const dadosReserva = {
+            usuario: localStorage.getItem('nomeUsuario'),
+            filme: urlParams.get('filme'),
+            assentos: urlParams.get('assentos')
+        };
 
-    if (!dadosReserva.usuario || !dadosReserva.filme || !dadosReserva.assentos) {
-        return;
-    }
-
-    try {
-        const response = await fetch(`${baseUrl}finalizar-reserva`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(dadosReserva)
-        });
-
-        if (response.ok) {
-            window.location.href = "menu.html";
-        } else {
-            const erroMsg = await response.text();
+        if (!dadosReserva.usuario || !dadosReserva.filme || !dadosReserva.assentos) {
+            return;
         }
-    } catch (err) {
-        console.error(err);
+
+        try {
+            const response = await fetch(`${baseUrl}/finalizar-reserva`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(dadosReserva)
+            });
+
+            if (response.ok) {
+                window.location.href = "menu.html";
+            } else {
+                const erroMsg = await response.text();
+            }
+        } catch (err) {
+            console.error(err);
+        }
     }
-}
