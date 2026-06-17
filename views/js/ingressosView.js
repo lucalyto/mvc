@@ -4,6 +4,7 @@ window.onload = function() {
     const hora = urlParams.get('hora');
     const sala = urlParams.get('sala');
     const assentos = urlParams.get('assentos');
+    const baseUrl = 'https://mvc-3rqy.onrender.com/'
 
     if (filme) document.getElementById('resumoFilme').innerText = filme;
     if (hora) document.getElementById('resumoHora').innerText = hora;
@@ -48,7 +49,7 @@ async function pagar() {
     }
 
     try {
-        const response = await fetch('/finalizar-reserva', {
+        const response = await fetch(`${baseUrl}finalizar-reserva`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(dadosReserva)
