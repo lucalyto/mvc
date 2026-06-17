@@ -116,7 +116,7 @@ input::placeholder {
     color: #fff;
     text-decoration: underline;
         }
-    </style>
+ </style>
 </head>
 <body>
     <main class="caixa">
@@ -125,12 +125,12 @@ input::placeholder {
             <p>Entre com seus dados de acesso</p>
         </header>
 
-        <form action="https://mvc-3rqy.onrender.com/logar" method="POST">
+        <form id="loginForm">
             <div class="input-group">
-                <input type="text" name="usuario" placeholder="Utilizador" required>
+                <input type="text" id="usuario" name="usuario" placeholder="Utilizador" required>
             </div>
             <div class="input-group">
-                <input type="password" name="senha" placeholder="Senha" required>
+                <input type="password" id="senha" name="senha" placeholder="Senha" required>
             </div>
             <button type="submit" class="btn-login">ENTRAR</button>
         </form>
@@ -142,17 +142,41 @@ input::placeholder {
     </main>
 
 <script>
-    document.getElementById('loginForm').addEventListener('submit', function(e) {
-        e.preventDefault()
+    const baseUrl = 'https://mvc-3rqy.onrender.com';
 
-        const email = document.getElementById('email').value
-        const senha = document.getElementById('senha').value
+    document.getElementById('loginForm').addEventListener('submit', async function(e) {
+        e.preventDefault(); 
 
-        if (email && senha) {
-            localStorage.setItem('usuarioLogado', 'true')
-            window.location.href = "menu.html"
+        const usuario = document.getElementById('usuario').value;
+        const senha = document.getElementById('senha').value;
+
+        try {
+            const response = await fetch(`${baseUrl}/logar`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ usuario, senha })
+            });
+
+            if (response.ok) {
+                const dados = await response.json();
+
+                localStorage.setItem('usuarioLogado', 'true');
+                localStorage.setItem('nomeUsuario', dados.usuario);
+                localStorage.setItem('tipoUsuario', dados.tipo_usuario);
+
+                if (dados.tipo_usuario === 'admin') {
+                    window.location.href = "admin.html";
+                } else {
+                    window.location.href = "menu.html";
+                }
+            } else {
+                alert('Utilizador ou senha incorretos.');
+            }
+        } catch (err) {
+            console.error("Erro ao logar:", err);
+            alert("Erro ao conectar com o servidor.");
         }
-    })
+    });
 </script>
 </body>
 </html>

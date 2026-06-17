@@ -111,7 +111,7 @@ input::placeholder {
     text-decoration: underline;
 }
 
-    </style>
+</style>
 </head>
 <body>
     <main class="caixa">
@@ -120,20 +120,42 @@ input::placeholder {
             <p>Crie sua conta no CinePro Ultra</p>
         </header>
 
-       <form action="https://mvc-3rqy.onrender.com/cadastrar" method="POST">
-            <div class="input-group">
-                <input type="text" name="usuario" placeholder="Utilizador" required>
-            </div>
-            <div class="input-group">
-                <input type="password" name="senha" placeholder="Senha" required>
-            </div>
-            <button type="submit" class="btn-cadastrar">CRIAR CONTA</button>
-        </form>
+            <form id="cadastroForm">
+        <div class="input-group">
+            <input type="text" id="usuario" name="usuario" placeholder="Utilizador" required>
+        </div>
+        <div class="input-group">
+            <input type="password" id="senha" name="senha" placeholder="Senha" required>
+        </div>
+        <button type="submit" class="btn-cadastrar">CRIAR CONTA</button>
+            </form>
+    </main>
 
 <script>
-document.getElementById('cadastroForm').addEventListener('submit', function(e) {
+const baseUrl = 'https://mvc-3rqy.onrender.com';
+
+document.getElementById('cadastroForm').addEventListener('submit', async function(e) {
     e.preventDefault(); 
 
-    window.location.href = "login.html"; 
+    const usuario = document.getElementById('usuario').value;
+    const senha = document.getElementById('senha').value;
+
+    try {
+        const response = await fetch(`${baseUrl}/cadastrar`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ usuario, senha })
+        });
+
+        if (response.ok) {
+            window.location.href = "login.html"; 
+        } else {
+            const erroData = await response.json();
+            alert('Erro ao cadastrar: ' + (erroData.message || 'Tente outro utilizador.'));
+        }
+    } catch (err) {
+        console.error("Erro na requisição:", err);
+        alert("Erro ao conectar com o servidor.");
+    }
 });
 </script>
