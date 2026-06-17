@@ -12,14 +12,14 @@ app.use(express.static(__dirname))
 
 app.use('/', rotasCinema)
 
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'views', 'menu.html'))
-})
+// app.get('/', (req, res) => {
+//     res.sendFile(path.join(__dirname, 'views', 'menu.html'))
+// })
 
-app.get('/:page.html', (req, res) => {
-    const page = req.params.page
-    res.sendFile(path.join(__dirname, 'views', `${page}.html`))
-})
+// app.get('/:page.html', (req, res) => {
+//     const page = req.params.page
+//     res.sendFile(path.join(__dirname, 'views', `${page}.html`))
+// })
 
 const PORT = 3000 
 app.listen(PORT, () => {
