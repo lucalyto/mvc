@@ -14,12 +14,12 @@ function verificarAcesso(nomeFilme) {
     console.log("Função verificarAcesso chamada para:", nomeFilme)
     const statusLogin = localStorage.getItem('usuarioLogado')
 
-    const urlDestino = `/sessao.html?filme=${encodeURIComponent(nomeFilme)}`
+    const urlDestino = `views/sessao.html?filme=${encodeURIComponent(nomeFilme)}`
 
     if (statusLogin === 'true') {
         window.location.href = urlDestino
     } else {
         localStorage.setItem('urlPretendida', urlDestino)
-        window.location.href = '/login.html'
+        window.location.href = 'login.html'
     }
 }
