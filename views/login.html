@@ -125,7 +125,7 @@ input::placeholder {
             <p>Entre com seus dados de acesso</p>
         </header>
 
-        <form action="/logar" method="POST">
+        <form action="https://mvc-3rqy.onrender.com/logar" method="POST">
             <div class="input-group">
                 <input type="text" name="usuario" placeholder="Utilizador" required>
             </div>
@@ -150,7 +150,7 @@ input::placeholder {
 
         if (email && senha) {
             localStorage.setItem('usuarioLogado', 'true')
-            window.location.href = "https://mvc-3rqy.onrender.com/views/menu.html"
+            window.location.href = "menu.html"
         }
     })
 </script>
