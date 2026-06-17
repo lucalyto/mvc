@@ -36,32 +36,36 @@ window.onload = function() {
     }
 };
 
-    async function pagar() {
-        const urlParams = new URLSearchParams(window.location.search);
+async function pagar() {
+    const urlParams = new URLSearchParams(window.location.search);
 
-        const dadosReserva = {
-            usuario: localStorage.getItem('nomeUsuario'),
-            filme: urlParams.get('filme'),
-            assentos: urlParams.get('assentos')
-        };
+    const dadosReserva = {
+        usuario: localStorage.getItem('nomeUsuario'),
+        filme: urlParams.get('filme'),
+        assentos: urlParams.get('assentos')
+    };
 
-        if (!dadosReserva.usuario || !dadosReserva.filme || !dadosReserva.assentos) {
-            return;
-        }
-
-        try {
-            const response = await fetch(`${baseUrl}/finalizar-reserva`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(dadosReserva)
-            });
-
-            if (response.ok) {
-                window.location.href = "menu.html";
-            } else {
-                const erroMsg = await response.text();
-            }
-        } catch (err) {
-            console.error(err);
-        }
+    if (!dadosReserva.usuario || !dadosReserva.filme || !dadosReserva.assentos) {
+        alert("Erro: Informações da reserva ausentes no navegador.");
+        return;
     }
+
+    try {
+        const response = await fetch(`${baseUrl}/finalizar-reserva`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(dadosReserva)
+        });
+
+        if (response.ok) {
+            alert("Pagamento confirmado com sucesso!");
+            window.location.href = "./menu.html";
+        } else {
+            const erroMsg = await response.text();
+            alert("Erro no servidor ao finalizar reserva: " + erroMsg);
+        }
+    } catch (err) {
+        console.error(err);
+        alert("Erro ao conectar com o servidor de pagamento.");
+    }
+}
