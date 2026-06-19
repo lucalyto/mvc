@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+
+<style>
+
+body {
+    background: #050505;
+    color: #fff;
+    padding-top: 90px;
+    overflow-x: hidden;
+    background-attachment: fixed; 
+}
+    
+.header-container {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 9999;
+    background: rgba(10, 10, 10, 0.85);
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    transition: 0.4s;
+}
+
+.header-scrolled {
+    height: 75px;
+    background: #000;
+}   
+
+    .navbar {
+    max-width: 1400px;
+    margin: 0 auto;
+    height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 40px;
+}
+
+.logo-text {
+    font-size: 36px;
+    font-weight: 900;
+    color: #fff;
+    text-transform: uppercase;
+    text-decoration: none;
+    letter-spacing: -1px;
+}
+
+.logo-text span {
+    color: #e50914;
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 15px;
+    margin: 0;
+    align-items: center;
+}
+
+.nav-item {
+    position: relative;
+}
+
+.nav-link {
+    color: rgba(255,255,255,0.7);
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 35px 10px;
+    text-transform: uppercase;
+    transition: 0.3s;
+    letter-spacing: 1px;
+    position: relative;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 25px;
+    left: 10px;
+    width: 0;
+    height: 3px; 
+    background: #e50914;
+    border-radius: 4px;
+    transition: width 0.3s ease;
+    box-shadow: 0 0 12px #e50914, 0 0 4px #e50914;
+}
+
+.nav-link:hover::after, 
+.nav-link.active::after {
+    width: calc(100% - 20px);
+}
+
+.nav-link:hover {
+    color: #fff;
+}
+
+.dropdown-content {
+    position: absolute;
+    top: 85%;
+    left: 0;
+    background: rgba(20, 20, 20, 0.98);
+    backdrop-filter: blur(20px);
+    min-width: 220px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    border-radius: 8px;
+    padding: 12px 0;
+    border: 1px solid rgba(255,255,255,0.1);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+}
+
+.nav-item:hover .dropdown-content {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.dropdown-item {
+    color: rgba(255,255,255,0.6);
+    padding: 12px 20px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 13px;
+    font-weight: 500;
+    transition: 0.2s;
+}
+
+.dropdown-item i {
+    font-size: 10px;
+    opacity: 0;
+    transition: 0.3s;
+    transform: translateX(-10px);
+}
+
+.dropdown-item:hover {
+    background: rgba(255,255,255,0.05);
+    color: #e50914;
+    padding-left: 25px;
+}
+
+.dropdown-item:hover i {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.nav-link i {
+    font-size: 9px;
+    margin-left: 5px;
+    transition: 0.3s;
+}
+
+.nav-item:hover .nav-link i {
+    transform: scale(0.8) rotate(180deg);
+    color: #e50914;
+}
+
+.btn-ticket-main {
+    background: #e50914;
+    color: #fff;
+    padding: 10px 25px;
+    border-radius: 50px;
+    font-weight: 700;
+    text-decoration: none;
+    font-size: 11px;
+    letter-spacing: 1px;
+    border: none;
+    transition: 0.3s;
+}
+
+.btn-ticket-main:hover {
+    background: #b20710;
+    transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+html, body {
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100vw;
+}
+
+.navbar {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto;
+    min-height: 20px;
+    padding: 10px;
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    box-sizing: border-box;
+}
+
+.logo-text, .navbar-brand {
+    font-size: 18px !important;
+}
+
+.nav-menu {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center;
+    gap: 5px !important; 
+    margin: 0 auto !important;
+    padding: 0 !important;
+}
+
+.nav-link {
+    font-size: 11px !important;
+    padding: 4px 6px !important;
+    white-space: nowrap !important;
+}
+}
+
+</style>
+</head>
+<body>
+
+<header class="header-container" id="mainHeader">
+    <nav class="navbar">
+        <a href="menu.html" class="logo-text">
+            <i class="fas fa-film text-danger me-2"></i>CINE<span>PRO</span>
+        </a>
+
+        <ul class="nav-menu">
+            <li class="nav-item"><a href="menu.html" class="nav-link">Home</a></li>
+
+            <li class="nav-item">
+                <a href="#" class="nav-link">Filmes <i class="fas fa-chevron-down"></i></a>
+                <div class="dropdown-content">
+                    <a href="em-breve.html" class="dropdown-item">Em Breve</a>
+                    <a href="sessoes-vip.html" class="dropdown-item">Sessões VIP</a>
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <a href="nossos-cinemas.html" class="nav-link">Cinemas <i class="fas fa-chevron-down"></i></a>
+            </li>
+
+            <li class="nav-item">
+                <a href="precos.html" class="nav-link">Preços</a>
+            </li>
+        </ul>
+
+        <div class="nav-right">
+            <a href="perfil.html" style="text-decoration:none;">
+                <button class="btn-ticket-main">PERFIL</button>
+            </a>
+        </div>
+    </nav>
+</header>
+    
+</body>
+</html>

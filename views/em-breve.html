@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Em Breve - CinePro Ultra</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
     
     <style>
 
@@ -118,9 +120,10 @@ body {
 }
 
 .movie-details h2 {
-    font-size: 36px;
-    margin-bottom: 15px;
-    line-height: 1.1;
+    font-size: 40px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: -0.5px;
 }
 
 .movie-details p {
@@ -181,78 +184,118 @@ body {
 }
 
 @media (max-width: 768px) {
-    .page-header {
-        padding: 80px 20px 40px;
-    }
 
-    .page-header h1 {
-        font-size: 32px;
-    }
-
-    .page-header p {
-        font-size: 11px;
-        letter-spacing: 2px;
-    }
-
-    .timeline-container {
-        padding: 30px 15px;
-    }
-
-    .timeline-container::before {
-        left: 15px;
-        transform: none;
-    }
-
-    .timeline-dot {
-        left: 15px;
-        transform: translateX(-50%);
-    }
-
-    .movie-entry {
-        flex-direction: column !important;
-        align-items: flex-start;
-        margin-bottom: 50px;
-        padding-left: 35px;
-    }
-
-    .movie-visual, 
-    .movie-details {
-        width: 100%;
-        padding: 0;
-    }
-
-    .movie-visual {
-        margin-bottom: 20px;
-    }
-
-    .movie-details h2 {
-        font-size: 24px;
-        margin-bottom: 10px;
-    }
-
-    .movie-details p {
-        font-size: 14px;
-        margin-bottom: 20px;
-    }
-
-    .btn-action {
-        width: 100%;
-        justify-content: center;
-        padding: 12px;
-        font-size: 13px;
-    }
-
-    .btn-outline {
-        margin-left: 0;
-        margin-top: 10px;
-    }
+    .navbar {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto;
+    min-height: 20px;
+    padding: 10px;
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    box-sizing: border-box;
 }
 
+.logo-text, .navbar-brand {
+    font-size: 18px !important;
+}
+
+.nav-menu {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center;
+    gap: 5px !important; 
+    margin: 0 auto !important;
+    padding: 0 !important;
+}
+
+.nav-link {
+    font-size: 11px !important;
+    padding: 4px 6px !important;
+    white-space: nowrap !important;
+}
+
+
+.btn-ticket-main, .btn-perfil {
+    font-size: 10px !important;
+    padding: 5px 10px !important;
+    white-space: nowrap !important;
+    margin: 0 !important;
+}
+
+.page-header {
+    padding: 80px 20px 40px;
+}
+
+.page-header h1 {
+    font-size: 32px;
+}
+
+.page-header p {
+    font-size: 11px;
+    letter-spacing: 2px;
+}
+
+.timeline-container {
+    padding: 30px 15px;
+}
+
+.timeline-container::before {
+    left: 15px;
+    transform: none;
+}
+
+.timeline-dot {
+    left: 15px;
+    transform: translateX(-50%);
+}
+
+.movie-entry {
+    flex-direction: column !important;
+    align-items: flex-start;
+    margin-bottom: 50px;
+    padding-left: 35px;
+}
+
+.movie-visual, 
+.movie-details {
+    width: 100%;
+    padding: 0;
+}
+
+.movie-visual {
+    margin-bottom: 20px;
+}
+
+.movie-details h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.movie-details p {
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.btn-action {
+    width: 100%;
+    justify-content: center;
+    padding: 12px;
+    font-size: 13px;
+}
+
+.btn-outline {
+    margin-left: 0;
+    margin-top: 10px;
+}
+}
     </style>
 </head>
-
-
 <body>
+
+    <div id="navbar"></div>
 
     <header class="page-header">
         <p>Próximos Lançamentos</p>
@@ -308,8 +351,9 @@ body {
                 </div>
             </div>
         </article>
-
     </main>
+
+    <script src="js/em-breveView.js"></script>
 
 </body>
 </html>

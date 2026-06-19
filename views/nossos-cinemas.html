@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nossas Unidades - CinePro Ultra</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
     
     <style>
 * {
@@ -15,21 +17,24 @@
 }
 
 body {
-    background-color: #050505;
-    color: #ffffff;
-    line-height: 1.6;
+    background: #000;
+    color: #fff;
+    padding-top: 90px;
+    overflow-x: hidden;
+    background-attachment: fixed; 
 }
 
 .cinema-header {
     padding: 80px 5% 40px;
     text-align: center;
-    background: linear-gradient(to bottom, #111, #050505);
+    background: #000;
 }
 
 .cinema-header h1 {
-    font-size: 42px;
+    font-size: 46px;
+    font-weight: 900;
     text-transform: uppercase;
-    letter-spacing: 2px;
+    letter-spacing: -0.5px;
 }
 
 .cinema-header h1 span { 
@@ -73,11 +78,9 @@ body {
 }
 
 .city-section h2 {
-    font-size: 24px;
-    margin-bottom: 25px;
-    display: flex;
-    align-items: center;
-    gap: 15px;
+    font-size: 18px;
+    font-weight: 700;
+    text-transform: uppercase;
 }
 
 .city-section h2 i { 
@@ -166,68 +169,111 @@ body {
 }
 
 @media (max-width: 768px) {
-    .cinema-header {
-        padding: 60px 20px 30px;
-    }
 
-    .cinema-header h1 {
-        font-size: 28px;
-    }
+.navbar {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto;
+    min-height: 20px;
+    padding: 10px;
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    box-sizing: border-box;
+}
 
-    .search-city {
-        margin: 15px auto 30px;
-    }
+.logo-text, .navbar-brand {
+    font-size: 18px !important;
+}
 
-    .search-city input {
-        padding: 12px 20px;
-        font-size: 14px;
-    }
+.nav-menu {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center;
+    gap: 5px !important; 
+    margin: 0 auto !important;
+    padding: 0 !important;
+}
 
-    .units-container {
-        padding: 0 15px;
-        margin-bottom: 50px;
-    }
+.nav-link {
+    font-size: 11px !important;
+    padding: 4px 6px !important;
+    white-space: nowrap !important;
+}
 
-    .city-section h2 {
-        font-size: 20px;
-        margin-bottom: 15px;
-    }
 
-    .unit-card {
-        flex-direction: column;
-    }
+.btn-ticket-main, .btn-perfil {
+    font-size: 10px !important;
+    padding: 5px 10px !important;
+    white-space: nowrap !important;
+    margin: 0 !important;
+}
 
-    .unit-img {
-        width: 100%;
-        height: 200px;
-    }
+.cinema-header {
+    padding: 60px 20px 30px;
+}
 
-    .unit-info {
-        padding: 20px;
-    }
+.cinema-header h1 {
+    font-size: 28px;
+}
 
-    .unit-info h3 {
-        font-size: 18px;
-    }
+.search-city {
+    margin: 15px auto 30px;
+}
 
-    .tech-tags {
-        flex-wrap: wrap;
-        gap: 6px;
-    }
+.search-city input {
+    padding: 12px 20px;
+    font-size: 14px;
+}
 
-    .btn-primary, 
-    .btn-outline {
-        width: 100%;
-        text-align: center;
-        padding: 12px;
-        display: block;
-        margin-top: 10px;
-    }
+.units-container {
+    padding: 0 15px;
+    margin-bottom: 50px;
+}
+
+.city-section h2 {
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+.unit-card {
+    flex-direction: column;
+}
+
+.unit-img {
+    width: 100%;
+    height: 200px;
+}
+
+.unit-info {
+    padding: 20px;
+}
+
+.unit-info h3 {
+    font-size: 18px;
+}
+
+.tech-tags {
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.btn-primary, 
+.btn-outline {
+    width: 100%;
+    text-align: center;
+    padding: 12px;
+    display: block;
+    margin-top: 10px;
+}
 }
 
     </style>
 </head>
 <body>
+
+    <div id="navbar"></div>
 
     <section class="cinema-header">
         <h1>Nossos <span>Cinemas</span></h1>
@@ -291,6 +337,8 @@ body {
             </div>
         </div>
     </main>
+
+    <script src="js/nossos-cinemasView.js"></script>
 
 </body>
 </html>
