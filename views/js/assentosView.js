@@ -73,7 +73,6 @@ window.onload = async function() {
 async function carregarEMapearAssentos() {
     var assentosOcupados = [];
     try {
-        // CORRIGIDO: Agora buscando diretamente da API do Render usando a baseUrl
         var response = await fetch(`${baseUrl}/assentos-ocupados?filme=` + encodeURIComponent(filmeAtual));
         if (response.ok) {
             var dadosBrutos = await response.json(); 
@@ -82,7 +81,6 @@ async function carregarEMapearAssentos() {
                 return a.trim();
             });
             
-            console.log("Assentos processados com sucesso:", assentosOcupados);
         }
     } catch (error) {
         console.error("Erro ao buscar assentos do banco:", error);
